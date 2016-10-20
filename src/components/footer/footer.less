@@ -1,0 +1,117 @@
+@import "../colors.less";
+@media screen and (max-width:580px) {
+  [class*="col-"] {
+    margin-top: 5px;
+    float: left;
+    padding: 5px;
+}
+  .footer {
+    margin: 0;
+    padding: 0;
+    .footer-wrapper {
+      margin: 5px;
+      .footer-heading {
+        cursor: pointer;
+        font-weight: bold;
+        display: block;
+        margin-left: 12px;
+        text-align: left;
+      }
+    }
+    .footer-icon {
+      float: right;
+      margin-right: 12px;
+      font-weight: bold;
+      font-size: 25px;
+      transition: all 0.3s ease-in-out;
+      .footer-icon-link::before {
+        content: "+";
+      }
+    }
+    .footer-holder {
+      transition: height .3s ease-in-out;
+      height: 0px;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      clear:both;
+      overflow: hidden;
+      background-color: @backgroundcolor;
+      .footer-item {
+        margin: 12px;
+        display: none;
+        &:hover, &:focus {
+          text-decoration: underline;
+          outline: none;
+        }
+        .footer-link {
+          color: @white;
+          text-decoration: none;
+        }
+      }
+    }
+    .footer-checkbox {
+      opacity: 0;
+      &:focus ~ .footer-wrapper {
+        background-image: linear-gradient(to bottom, @backgroundcolor, @white);
+      }
+      &:checked ~ .footer-holder {
+        height:120px;
+        .footer-item {
+          display: block;
+        }
+      }
+      &:checked ~ .footer-heading {
+        .footer-icon {
+          .footer-icon-link::before {
+            content: "-";
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width:581px) {
+  .footer {
+    display: block;
+    text-align: center;
+    .footer-checkbox {
+      display: none;
+    }
+    .footer-wrapper {
+      display: block;
+      text-align: center;
+      .footer-heading {
+        display: inline-block;
+        font-weight: bold;
+      }
+    }
+    .footer-holder {
+      display: inline-block;
+      text-align: left;
+      .footer-item {
+        margin: 8px;
+        .footer-link {
+          &:hover, &:focus {
+            outline: none;
+            text-decoration: underline;
+          }
+          text-decoration: none;
+          color: @backgroundcolor;
+        }
+      }
+    }
+  }
+}
+
+.copy-right {
+	margin: 0;
+	padding-top: 12px;
+	border: 1px solid @backgroundcolor;
+	height: 40px;
+	opacity: 0.9;
+	color: @white;
+	text-align: center;
+	background-color: @backgroundcolor;
+}

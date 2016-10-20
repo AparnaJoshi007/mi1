@@ -1,0 +1,82 @@
+@import "../colors.less";
+@import "../responsive.less";
+body {
+  background-color: @bodybackground;
+}
+
+[class*="col-"] {
+    margin-top: 12px;
+    float: left;
+    padding: 15px;
+
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+* {
+    box-sizing: border-box;
+}
+.stamp {
+  text-align: center;
+  color:@white;
+
+  .stamp-link {
+    &:hover, &:focus {
+      img {
+        outline: none;
+        width: 110%;
+        height: 110%;
+      }
+      .stamp-heading {
+        background-color: @hovercolorstamp;
+      }
+    }
+    width:100%;
+    height:200px;
+    display:inline-block;
+    position:relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+      border-radius: 6px;
+      width: 100%;
+      height: 100%;
+      transition: all 0.5s ease-in-out;
+    }
+    .stamp-heading{
+      padding-bottom:12px;
+      font-size: 16px;
+      font-family: sans-serif;
+      font-weight: bold;
+      position: absolute;
+      bottom: 0;
+      left:0;
+      width:100%;
+      color: @white;
+      background-color: @backgroundcolor;
+      opacity: 0.9;
+      transition: background .3s ease-in-out;
+      transition-delay: .2s;
+      line-height: 52px;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 1000px) {
+    [class*="col-"] {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    [class*="col-"] {
+        width: 100%;
+    }
+}

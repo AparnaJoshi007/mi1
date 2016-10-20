@@ -1,0 +1,85 @@
+{
+  "navList": [
+    "Home",
+    "Products",
+    "About",
+    "Contact"
+  ],
+  "imageList": [
+    {
+      "title": "Fruits",
+      "image": "fruits.jpg"
+    },
+    {
+      "title": "Dairy",
+      "image": "dairy.jpg"
+    },
+    {
+      "title": "Cosmetics",
+      "image": "cosmetics.jpg"
+    },
+    {
+      "title": "Pasta",
+      "image": "pasta.jpg"
+    },
+    {
+      "title": "Fruits",
+      "image": "fruits.jpg"
+    },
+    {
+      "title": "Dairy",
+      "image": "dairy.jpg"
+    },
+    {
+      "title": "Cosmetics",
+      "image": "cosmetics.jpg"
+    },
+    {
+      "title": "Pasta",
+      "image": "pasta.jpg"
+    }
+  ],
+  "footer": [
+    {
+      "title": "Quick links",
+      "id": "Quick",
+      "content": [
+        "Support",
+        "Store Locations",
+        "Careers",
+        "About Us",
+        "Languages"
+      ]
+    },
+    {
+      "title": "Other links",
+      "id": "Other",
+      "content": [
+        "Support",
+        "Store Locations",
+        "Careers",
+        "About Us",
+        "Languages"
+      ]
+    },
+    {
+      "title": "More Links",
+      "id": "More",
+      "content": [
+        "Support",
+        "Store Locations",
+        "Careers",
+        "About Us",
+        "Languages"
+      ]
+    }
+  ],
+  "logo": "LOGO",
+  "navright": "Login",
+  "copyright": "Copyright @hy83",
+  "carouselImages": [
+    "Household.jpg",
+    "Coffee.jpg",
+    "beverages.jpg"
+  ]
+}

@@ -1,0 +1,169 @@
+@import "../colors.less";
+@media screen and (max-width:580px) {
+  .navbar {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: @backgroundcolor;
+    .navbar-checkbox {
+      opacity: 0;
+      &:focus ~ .icon {
+          font-weight: bold;
+      }
+      &:checked ~ .navbar-holder {
+        height:220px;
+        .navbar-item, .navbar-right {
+          display: inline;
+        }
+      }
+    }
+    .icon {
+      float: right;
+      margin: 12px;
+      font-size: 25px;
+      .navbar-icon-link {
+        color: @white;
+      }
+      .navbar-icon-link::before {
+        content: "☰";
+      }
+    }
+    .navbar-logo {
+      float: left;
+      font-weight: bold;
+      &:hover, &:focus {
+        background-color: @backgroundcolor;
+      }
+      .navbar-logo-link {
+        display: block;
+        color: @white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        &:focus {
+          outline: none;
+          background-color: @hovercolorheader;
+        }
+      }
+    }
+
+    .navbar-holder {
+      transition: height .3s ease-in-out;
+      margin: 0;
+      padding: 0;
+      clear: both;
+      list-style-type: none;
+      overflow: hidden;
+      height: 0;
+      .navbar-item {
+        &:hover, &:focus {
+          background-color: @hovercolorheader;
+        }
+        float: none;
+        display: none;
+        .navbar-link {
+          &:hover, &:focus {
+            background-color: @hovercolorheader;
+            text-decoration: underline;
+            outline: none;
+          }
+          display: block;
+          color: @white;
+          text-align: left;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+      }
+      .navbar-right {
+        &:hover, &:focus {
+          background-color: @hovercolorheader;
+        }
+        float: none;
+        display: none;
+        .navbar-right-link {
+          &:hover, &:focus {
+            background-color: @hovercolorheader;
+            text-decoration: underline;
+            outline: none;
+          }
+          display: block;
+          color: @white;
+          text-align: left;
+          padding: 14px 16px;
+          text-decoration: none;
+          }
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width:581px) {
+.navbar {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: @backgroundcolor;
+  .navbar-logo {
+    float: left;
+    font-weight: bold;
+    &:hover, &:focus {
+      background-color: @backgroundcolor;
+    }
+    .navbar-logo-link {
+      display: block;
+      color: @white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      &:focus {
+        background-color: @hovercolorheader;
+        outline: none;
+      }
+    }
+  }
+.navbar-holder {
+    list-style-type: none;
+    .navbar-right {
+      &:hover, &:focus {
+        background-color: @hovercolorheader;
+      }
+      float: right;
+      .navbar-right-link {
+        &:hover, &:focus {
+          outline: none;
+          text-decoration: underline;
+          background-color: @hovercolorheader;
+        }
+        display: block;
+        color: @white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+    }
+
+    .navbar-item {
+      float: left;
+      &:hover, &:focus {
+        background-color: @hovercolorheader;
+      }
+      .navbar-link {
+        &:hover, &:focus {
+          outline: none;
+          text-decoration: underline;
+          background-color: @hovercolorheader;
+        }
+        display: block;
+        color: @white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+    }
+}
+  .icon, .navbar-checkbox {
+    display: none;
+  }
+}
+}
