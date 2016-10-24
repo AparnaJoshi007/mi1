@@ -9,7 +9,7 @@ const App = props => (<Page data={props.data} />);
 export default App;
 
 if (typeof document !== 'undefined') {
-	let data = fetch('http://localhost:3000/mock-content.json')
+    let data = fetch('http://localhost:3000/mock-content.json')
     .then((response) => {
         if (response.status >= 400) {
             throw new Error("Bad response from server");

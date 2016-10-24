@@ -5,10 +5,6 @@ import Body from '../body';
 import Footer from '../footer';
 
 class Page extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const data = this.props.data;
     const imageList = data.imageList;
@@ -16,9 +12,9 @@ class Page extends React.Component {
     const carouselImages = data.carouselImages;
   return (
     <div>
-      <Header logo={data.logo} navList={navList} navright={data.navright}/>
+      <Header logo={data.logo} navList={navList} navright={data.navright} />
       <div className="grid">
-        <Carousel imageList={data.carouselImages} />
+        <Carousel imageList={carouselImages} />
         <div className="row">
           {imageList.map((item, index) => <Body key={index} image={item.image} title={item.title} />)}
         </div>

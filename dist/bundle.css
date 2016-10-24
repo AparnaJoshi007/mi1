@@ -462,21 +462,27 @@ body {
   .carousel-wrapper {
     height: 200px;
   }
-  .carousel-wrapper .carousel1 .carousel-image {
+  .carousel-wrapper .carousel.carousel1 .carousel-image {
     height: 100%;
     overflow: hidden;
   }
-  .carousel-wrapper .carousel2 .carousel-image {
+  .carousel-wrapper .carousel.carousel1 .arrow {
+    background-size: 20px;
+    background-position: 10px 50%;
+  }
+  .carousel-wrapper .carousel.carousel2 .carousel-image {
     height: 100%;
     overflow: hidden;
   }
-  .carousel-wrapper .carousel3 .carousel-image {
+  .carousel-wrapper .carousel.carousel2 .arrow {
+    background-size: 20px;
+    background-position: 10px 50%;
+  }
+  .carousel-wrapper .carousel.carousel3 .carousel-image {
     height: 100%;
     overflow: hidden;
   }
-  .carousel-wrapper .carousel1 .arrow,
-  .carousel-wrapper .carousel2 .arrow,
-  .carousel-wrapper .carousel3 .arrow {
+  .carousel-wrapper .carousel.carousel3 .arrow {
     background-size: 20px;
     background-position: 10px 50%;
   }

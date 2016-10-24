@@ -22470,10 +22470,10 @@
 	var Page = function (_React$Component) {
 	  _inherits(Page, _React$Component);
 	
-	  function Page(props) {
+	  function Page() {
 	    _classCallCheck(this, Page);
 	
-	    return _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
+	    return _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).apply(this, arguments));
 	  }
 	
 	  _createClass(Page, [{
@@ -22490,7 +22490,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'grid' },
-	          _react2.default.createElement(_carousel2.default, { imageList: data.carouselImages }),
+	          _react2.default.createElement(_carousel2.default, { imageList: carouselImages }),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'row' },
@@ -22554,11 +22554,11 @@
 	      "nav",
 	      { className: "navbar" },
 	      _react2.default.createElement(
-	        "label",
+	        "span",
 	        { className: "navbar-logo" },
 	        _react2.default.createElement(
 	          "a",
-	          { className: "navbar-logo-link", href: "#" },
+	          { className: "navbar-logo-link", href: "/" },
 	          props.logo
 	        )
 	      ),
@@ -22581,7 +22581,7 @@
 	            { key: index, className: "navbar-item" },
 	            _react2.default.createElement(
 	              "a",
-	              { className: "navbar-link", href: "#" },
+	              { className: "navbar-link", href: "/" },
 	              item
 	            )
 	          );
@@ -22591,7 +22591,7 @@
 	          { className: "navbar-right" },
 	          _react2.default.createElement(
 	            "a",
-	            { className: "navbar-right-link", href: "#" },
+	            { className: "navbar-right-link", href: "/" },
 	            props.navright
 	          )
 	        )
@@ -22668,8 +22668,14 @@
 	  }, {
 	    key: 'handleTouchMove',
 	    value: function handleTouchMove(evt) {
-	      var id;
-	      if (document.getElementById("carousel3").className == "carousel carousel3 visible") id = "carousel3";else if (document.getElementById("carousel1").className == "carousel carousel1 visible") id = "carousel1";else if (document.getElementById("carousel2").className == "carousel carousel2 visible") id = "carousel2";
+	      var id = void 0;
+	      if (document.getElementById("carousel3").className === "carousel carousel3 visible") {
+	        id = "carousel3";
+	      } else if (document.getElementById("carousel1").className === "carousel carousel1 visible") {
+	        id = "carousel1";
+	      } else if (document.getElementById("carousel2").className === "carousel carousel2 visible") {
+	        id = "carousel2";
+	      }
 	
 	      if (!xDown || !yDown) {
 	        return;
@@ -22677,16 +22683,12 @@
 	
 	      var xUp = evt.touches[0].clientX;
 	      var yUp = evt.touches[0].clientY;
-	
 	      var xDiff = xDown - xUp;
 	      var yDiff = yDown - yUp;
-	      var swipedDirection = '';
 	      if (Math.abs(xDiff) > Math.abs(yDiff)) {
 	        if (xDiff > 0) {
-	          //prev
 	          this.clickHandler(id, "right");
 	        } else {
-	          //next
 	          this.clickHandler(id, "left");
 	        }
 	      }
@@ -22698,31 +22700,30 @@
 	    key: 'clickHandler',
 	    value: function clickHandler(id, direction) {
 	      if (typeof document !== 'undefined') {
-	        var carouselClass = document.getElementById(id).className;
-	        if (direction == "left") {
-	          if (id == "carousel1") {
+	        if (direction === "left") {
+	          if (id === "carousel1") {
 	            document.getElementById("carousel3").className = "carousel carousel3 visible";
 	            document.getElementById(id).className = "carousel carousel1";
 	          }
-	          if (id == "carousel2") {
+	          if (id === "carousel2") {
 	            document.getElementById("carousel1").className = "carousel carousel1 visible";
 	            document.getElementById(id).className = "carousel carousel2";
 	          }
-	          if (id == "carousel3") {
+	          if (id === "carousel3") {
 	            document.getElementById("carousel2").className = "carousel carousel2 visible";
 	            document.getElementById(id).className = "carousel carousel3";
 	          }
 	        }
-	        if (direction == "right") {
-	          if (id == "carousel1") {
+	        if (direction === "right") {
+	          if (id === "carousel1") {
 	            document.getElementById("carousel2").className = "carousel carousel2 visible";
 	            document.getElementById(id).className = "carousel carousel1";
 	          }
-	          if (id == "carousel2") {
+	          if (id === "carousel2") {
 	            document.getElementById("carousel3").className = "carousel carousel3 visible";
 	            document.getElementById(id).className = "carousel carousel2";
 	          }
-	          if (id == "carousel3") {
+	          if (id === "carousel3") {
 	            document.getElementById("carousel1").className = "carousel carousel1 visible";
 	            document.getElementById(id).className = "carousel carousel3";
 	          }
@@ -22808,7 +22809,7 @@
 	    { className: "col-3 stamp" },
 	    _react2.default.createElement(
 	      "a",
-	      { href: "#", className: "stamp-link" },
+	      { href: "/", className: "stamp-link" },
 	      _react2.default.createElement(
 	        "span",
 	        { className: "stamp-heading" },
@@ -22849,13 +22850,13 @@
 	  return _react2.default.createElement(
 	    "div",
 	    { className: "footer" },
-	    _react2.default.createElement("input", { type: "checkbox", className: "footer-checkbox", id: "footerCheckBox" + props.id }),
+	    _react2.default.createElement("input", { type: "checkbox", className: "footer-checkbox", id: "footerCheckBox " + props.id }),
 	    _react2.default.createElement(
 	      "div",
 	      { className: "footer-wrapper" },
 	      _react2.default.createElement(
 	        "label",
-	        { htmlFor: "footerCheckBox" + props.id, className: "footer-heading" },
+	        { htmlFor: "footerCheckBox " + props.id, className: "footer-heading" },
 	        props.label,
 	        _react2.default.createElement(
 	          "span",
@@ -22866,14 +22867,14 @@
 	    ),
 	    _react2.default.createElement(
 	      "ul",
-	      { className: "footer-holder", id: "footerLink" + props.id },
+	      { className: "footer-holder", id: "footerLink " + props.id },
 	      props.content.map(function (item, index) {
 	        return _react2.default.createElement(
 	          "li",
 	          { key: index, className: "footer-item" },
 	          _react2.default.createElement(
 	            "a",
-	            { className: "footer-link", href: "#" },
+	            { className: "footer-link", href: "/" },
 	            item
 	          )
 	        );
