@@ -24,6 +24,12 @@ body {
   color:@white;
 
   .stamp-link {
+    width:100%;
+    height:200px;
+    display:inline-block;
+    position:relative;
+    overflow: hidden;
+    cursor: pointer;
     &:hover, &:focus {
       img {
         outline: none;
@@ -34,13 +40,6 @@ body {
         background-color: @hovercolorstamp;
       }
     }
-    width:100%;
-    height:200px;
-    display:inline-block;
-    position:relative;
-    overflow: hidden;
-    cursor: pointer;
-
     img {
       border-radius: 6px;
       width: 100%;

@@ -6,17 +6,15 @@
   height:400px;
   text-align: center;
   .carousel {
-    transition: all 0.5s ease-in-out;
+    transition: all 1s ease-in-out;
     &.carousel1 {
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 0;
-      width: 0;
       opacity: 0;
-      transition: all 0.5s ease-in-out;
+      transition: all 1s ease-in-out;
       color: @white;
       .arrow {
         position: absolute;
@@ -52,11 +50,10 @@
         border-radius: 6px;
       }
       &.visible {
-        height: 100%;
-        width: 100%;
         opacity:1;
         .arrow {
           display: block;
+          z-index: 3;
         }
       }
     }
@@ -66,10 +63,8 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 0;
-      width: 0;
       opacity: 0;
-      transition: all 0.5s ease-in-out;
+      transition: all 1s ease-in-out;
       color: @white;
       .arrow {
         position: absolute;
@@ -105,11 +100,10 @@
         border-radius: 6px;
       }
       &.visible {
-        height: 100%;
-        width: 100%;
         opacity: 1;
         .arrow {
           display: block;
+          z-index: 3;
         }
       }
     }
@@ -119,10 +113,8 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 0;
-      width: 0;
       opacity: 0;
-      transition: all 0.5s ease-in-out;
+      transition: all 1s ease-in-out;
       color: @white;
       .arrow {
         position: absolute;
@@ -158,11 +150,10 @@
         border-radius: 6px;
       }
       &.visible {
-        height: 100%;
-        width: 100%;
         opacity: 1;
         .arrow {
           display: block;
+          z-index: 3;
         }
       }
     }

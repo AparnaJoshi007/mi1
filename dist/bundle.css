@@ -286,7 +286,7 @@ body {
   text-align: center;
 }
 .carousel-wrapper .carousel {
-  transition: all 0.5s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 .carousel-wrapper .carousel.carousel1 {
   position: absolute;
@@ -294,10 +294,8 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 0;
-  width: 0;
   opacity: 0;
-  transition: all 0.5s ease-in-out;
+  transition: all 1s ease-in-out;
   color: #fff;
 }
 .carousel-wrapper .carousel.carousel1 .arrow {
@@ -336,12 +334,11 @@ body {
   border-radius: 6px;
 }
 .carousel-wrapper .carousel.carousel1.visible {
-  height: 100%;
-  width: 100%;
   opacity: 1;
 }
 .carousel-wrapper .carousel.carousel1.visible .arrow {
   display: block;
+  z-index: 3;
 }
 .carousel-wrapper .carousel.carousel2 {
   position: absolute;
@@ -349,10 +346,8 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 0;
-  width: 0;
   opacity: 0;
-  transition: all 0.5s ease-in-out;
+  transition: all 1s ease-in-out;
   color: #fff;
 }
 .carousel-wrapper .carousel.carousel2 .arrow {
@@ -391,12 +386,11 @@ body {
   border-radius: 6px;
 }
 .carousel-wrapper .carousel.carousel2.visible {
-  height: 100%;
-  width: 100%;
   opacity: 1;
 }
 .carousel-wrapper .carousel.carousel2.visible .arrow {
   display: block;
+  z-index: 3;
 }
 .carousel-wrapper .carousel.carousel3 {
   position: absolute;
@@ -404,10 +398,8 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 0;
-  width: 0;
   opacity: 0;
-  transition: all 0.5s ease-in-out;
+  transition: all 1s ease-in-out;
   color: #fff;
 }
 .carousel-wrapper .carousel.carousel3 .arrow {
@@ -446,12 +438,11 @@ body {
   border-radius: 6px;
 }
 .carousel-wrapper .carousel.carousel3.visible {
-  height: 100%;
-  width: 100%;
   opacity: 1;
 }
 .carousel-wrapper .carousel.carousel3.visible .arrow {
   display: block;
+  z-index: 3;
 }
 @media (max-width: 700px) {
   .carousel-wrapper {
