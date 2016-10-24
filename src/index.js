@@ -2,7 +2,6 @@ import React from 'react';
 import {render} from 'react-dom';
 import fetch from 'isomorphic-fetch';
 import Page from './components/page';
-//import data from './mock-content';
 
 const App = props => (<Page data={props.data} />);
 

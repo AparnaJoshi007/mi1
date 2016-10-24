@@ -69,8 +69,6 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	//import data from './mock-content';
-	
 	var App = function App(props) {
 	    return _react2.default.createElement(_page2.default, { data: props.data });
 	};
@@ -22649,6 +22647,8 @@
 	    var _this = _possibleConstructorReturn(this, (Carousel.__proto__ || Object.getPrototypeOf(Carousel)).call(this, props));
 	
 	    _this.clickHandler = _this.clickHandler.bind(_this);
+	    _this.handleTouchStart = _this.handleTouchStart.bind(_this);
+	    _this.handleTouchMove = _this.handleTouchMove.bind(_this);
 	    return _this;
 	  }
 	
@@ -22669,7 +22669,7 @@
 	    key: 'handleTouchMove',
 	    value: function handleTouchMove(evt) {
 	      var id;
-	      if (document.getElementById("carousel3").className == "carousel3 visible") id = "carousel3";else if (document.getElementById("carousel1").className == "carousel1 visible") id = "carousel1";else if (document.getElementById("carousel2").className == "carousel2 visible") id = "carousel2";
+	      if (document.getElementById("carousel3").className == "carousel carousel3 visible") id = "carousel3";else if (document.getElementById("carousel1").className == "carousel carousel1 visible") id = "carousel1";else if (document.getElementById("carousel2").className == "carousel carousel2 visible") id = "carousel2";
 	
 	      if (!xDown || !yDown) {
 	        return;
@@ -22684,32 +22684,10 @@
 	      if (Math.abs(xDiff) > Math.abs(yDiff)) {
 	        if (xDiff > 0) {
 	          //prev
-	          if (id == "carousel1") {
-	            document.getElementById("carousel3").className = "carousel3 visible";
-	            document.getElementById(id).className = "carousel1";
-	          }
-	          if (id == "carousel2") {
-	            document.getElementById("carousel1").className = "carousel1 visible";
-	            document.getElementById(id).className = "carousel2";
-	          }
-	          if (id == "carousel3") {
-	            document.getElementById("carousel2").className = "carousel2 visible";
-	            document.getElementById(id).className = "carousel3";
-	          }
+	          this.clickHandler(id, "right");
 	        } else {
 	          //next
-	          if (id == "carousel1") {
-	            document.getElementById("carousel2").className = "carousel2 visible";
-	            document.getElementById(id).className = "carousel1";
-	          }
-	          if (id == "carousel2") {
-	            document.getElementById("carousel3").className = "carousel3 visible";
-	            document.getElementById(id).className = "carousel2";
-	          }
-	          if (id == "carousel3") {
-	            document.getElementById("carousel1").className = "carousel1 visible";
-	            document.getElementById(id).className = "carousel3";
-	          }
+	          this.clickHandler(id, "left");
 	        }
 	      }
 	
@@ -22723,30 +22701,30 @@
 	        var carouselClass = document.getElementById(id).className;
 	        if (direction == "left") {
 	          if (id == "carousel1") {
-	            document.getElementById("carousel3").className = "carousel3 visible";
-	            document.getElementById(id).className = "carousel1";
+	            document.getElementById("carousel3").className = "carousel carousel3 visible";
+	            document.getElementById(id).className = "carousel carousel1";
 	          }
 	          if (id == "carousel2") {
-	            document.getElementById("carousel1").className = "carousel1 visible";
-	            document.getElementById(id).className = "carousel2";
+	            document.getElementById("carousel1").className = "carousel carousel1 visible";
+	            document.getElementById(id).className = "carousel carousel2";
 	          }
 	          if (id == "carousel3") {
-	            document.getElementById("carousel2").className = "carousel2 visible";
-	            document.getElementById(id).className = "carousel3";
+	            document.getElementById("carousel2").className = "carousel carousel2 visible";
+	            document.getElementById(id).className = "carousel carousel3";
 	          }
 	        }
 	        if (direction == "right") {
 	          if (id == "carousel1") {
-	            document.getElementById("carousel2").className = "carousel2 visible";
-	            document.getElementById(id).className = "carousel1";
+	            document.getElementById("carousel2").className = "carousel carousel2 visible";
+	            document.getElementById(id).className = "carousel carousel1";
 	          }
 	          if (id == "carousel2") {
-	            document.getElementById("carousel3").className = "carousel3 visible";
-	            document.getElementById(id).className = "carousel2";
+	            document.getElementById("carousel3").className = "carousel carousel3 visible";
+	            document.getElementById(id).className = "carousel carousel2";
 	          }
 	          if (id == "carousel3") {
-	            document.getElementById("carousel1").className = "carousel1 visible";
-	            document.getElementById(id).className = "carousel3";
+	            document.getElementById("carousel1").className = "carousel carousel1 visible";
+	            document.getElementById(id).className = "carousel carousel3";
 	          }
 	        }
 	      }
@@ -22761,7 +22739,7 @@
 	        { className: 'carousel-wrapper', id: 'carousel' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'carousel1', id: 'carousel1' },
+	          { className: 'carousel carousel1', id: 'carousel1' },
 	          _react2.default.createElement('a', { href: '#', className: 'arrow arrow-prev', onClick: function onClick() {
 	              return _this2.clickHandler("carousel1", "left");
 	            } }),
@@ -22772,7 +22750,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'carousel2 visible', id: 'carousel2' },
+	          { className: 'carousel carousel2 visible', id: 'carousel2' },
 	          _react2.default.createElement('a', { href: '#', className: 'arrow arrow-prev', onClick: function onClick() {
 	              return _this2.clickHandler("carousel2", "left");
 	            } }),
@@ -22783,7 +22761,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'carousel3', id: 'carousel3' },
+	          { className: 'carousel carousel3', id: 'carousel3' },
 	          _react2.default.createElement('a', { href: '#', className: 'arrow arrow-prev', onClick: function onClick() {
 	              return _this2.clickHandler("carousel3", "left");
 	            } }),

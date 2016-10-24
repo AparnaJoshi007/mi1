@@ -5,145 +5,166 @@
   position: relative;
   height:400px;
   text-align: center;
-  .carousel1 {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity:0;
+  .carousel {
     transition: all 0.5s ease-in-out;
-    color: @white;
-    display: none;
-    .arrow {
+    &.carousel1 {
       position: absolute;
       top: 0;
-      display: block;
-      width: 50px;
-      height: 100%;
-      -webkit-tap-highlight-color: transparent;
-      background: url("./arrow.png") 50% 50%/20px no-repeat;
-      background-position: center;
-      &.arrow-prev {
-        left: 0;
-        &:hover {
-          background-color: fade(transparent, 20%);
-        }
-      }
-      &.arrow-next {
-        right: 0;
-        -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);
-        &:hover {
-          background-color: fade(transparent, 20%);
-        }
-      }
-    }
-    .carousel-image {
-      width: 100%;
-      cursor: pointer;
-      height: 100%;
-      overflow: hidden;
-      border-radius: 6px;
-    }
-    &.visible {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      width: 0;
+      opacity: 0;
       transition: all 0.5s ease-in-out;
-      opacity: 1;
-      display: block;
+      color: @white;
+      .arrow {
+        position: absolute;
+        top: 0;
+        display: none;
+        width: 50px;
+        height: 100%;
+        -webkit-tap-highlight-color: transparent;
+        background: url("./arrow.png") 50% 50%/20px no-repeat;
+        background-position: center;
+        &.arrow-prev {
+          left: 0;
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+        &.arrow-next {
+          right: 0;
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+      }
+      .carousel-image {
+        width: 100%;
+        cursor: pointer;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 6px;
+      }
+      &.visible {
+        height: 100%;
+        width: 100%;
+        opacity:1;
+        .arrow {
+          display: block;
+        }
+      }
     }
-  }
-  .carousel2 {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
-    color: @white;
-    display: none;
-    .arrow {
+    &.carousel2 {
       position: absolute;
       top: 0;
-      display: block;
-      width: 50px;
-      height: 100%;
-      -webkit-tap-highlight-color: transparent;
-      background: url("./arrow.png") 50% 50%/20px no-repeat;
-      background-position: center;
-      &.arrow-prev {
-        left: 0;
-        &:hover {
-          background-color: fade(transparent, 20%);
-        }
-      }
-      &.arrow-next {
-        right: 0;
-        -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);
-        &:hover {
-          background-color: fade(transparent, 20%);
-        }
-      }
-    }
-    .carousel-image {
-      width: 100%;
-      cursor: pointer;
-      height: 100%;
-      overflow: hidden;
-      border-radius: 6px;
-    }
-    &.visible {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      width: 0;
+      opacity: 0;
       transition: all 0.5s ease-in-out;
-      display: block;
-      opacity: 1;
+      color: @white;
+      .arrow {
+        position: absolute;
+        top: 0;
+        display: none;
+        width: 50px;
+        height: 100%;
+        -webkit-tap-highlight-color: transparent;
+        background: url("./arrow.png") 50% 50%/20px no-repeat;
+        background-position: center;
+        &.arrow-prev {
+          left: 0;
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+        &.arrow-next {
+          right: 0;
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+      }
+      .carousel-image {
+        width: 100%;
+        cursor: pointer;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 6px;
+      }
+      &.visible {
+        height: 100%;
+        width: 100%;
+        opacity: 1;
+        .arrow {
+          display: block;
+        }
+      }
     }
-  }
-  .carousel3 {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
-    color: @white;
-    display: none;
-    .arrow {
+    &.carousel3 {
       position: absolute;
       top: 0;
-      display: block;
-      width: 50px;
-      height: 100%;
-      -webkit-tap-highlight-color: transparent;
-      background: url("./arrow.png") 50% 50%/20px no-repeat;
-      background-position: center;
-      &.arrow-prev {
-        left: 0;
-        &:hover {
-          background-color: fade(transparent, 20%);
-        }
-      }
-      &.arrow-next {
-        right: 0;
-        -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);
-        &:hover {
-          background-color: fade(transparent, 20%);
-        }
-      }
-    }
-    .carousel-image {
-      width: 100%;
-      cursor: pointer;
-      height: 100%;
-      overflow: hidden;
-      border-radius: 6px;
-    }
-    &.visible {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      width: 0;
+      opacity: 0;
       transition: all 0.5s ease-in-out;
-      display: block;
-      opacity: 1;
+      color: @white;
+      .arrow {
+        position: absolute;
+        top: 0;
+        display: none;
+        width: 50px;
+        height: 100%;
+        -webkit-tap-highlight-color: transparent;
+        background: url("./arrow.png") 50% 50%/20px no-repeat;
+        background-position: center;
+        &.arrow-prev {
+          left: 0;
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+        &.arrow-next {
+          right: 0;
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+      }
+      .carousel-image {
+        width: 100%;
+        cursor: pointer;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 6px;
+      }
+      &.visible {
+        height: 100%;
+        width: 100%;
+        opacity: 1;
+        .arrow {
+          display: block;
+        }
+      }
     }
   }
 }

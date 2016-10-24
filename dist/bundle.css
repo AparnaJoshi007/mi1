@@ -285,146 +285,173 @@ body {
   height: 400px;
   text-align: center;
 }
-.carousel-wrapper .carousel1 {
+.carousel-wrapper .carousel {
+  transition: all 0.5s ease-in-out;
+}
+.carousel-wrapper .carousel.carousel1 {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  height: 0;
+  width: 0;
   opacity: 0;
   transition: all 0.5s ease-in-out;
   color: #fff;
-  display: none;
 }
-.carousel-wrapper .carousel1 .arrow {
+.carousel-wrapper .carousel.carousel1 .arrow {
   position: absolute;
   top: 0;
-  display: block;
+  display: none;
   width: 50px;
   height: 100%;
   -webkit-tap-highlight-color: transparent;
   background: url("arrow.png") 50% 2.5% no-repeat;
   background-position: center;
 }
-.carousel-wrapper .carousel1 .arrow.arrow-prev {
+.carousel-wrapper .carousel.carousel1 .arrow.arrow-prev {
   left: 0;
 }
-.carousel-wrapper .carousel1 .arrow.arrow-prev:hover {
+.carousel-wrapper .carousel.carousel1 .arrow.arrow-prev:hover,
+.carousel-wrapper .carousel.carousel1 .arrow.arrow-prev:focus {
+  outline: none;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.carousel-wrapper .carousel1 .arrow.arrow-next {
+.carousel-wrapper .carousel.carousel1 .arrow.arrow-next {
   right: 0;
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
-.carousel-wrapper .carousel1 .arrow.arrow-next:hover {
+.carousel-wrapper .carousel.carousel1 .arrow.arrow-next:hover,
+.carousel-wrapper .carousel.carousel1 .arrow.arrow-next:focus {
+  outline: none;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.carousel-wrapper .carousel1 .carousel-image {
+.carousel-wrapper .carousel.carousel1 .carousel-image {
   width: 100%;
   cursor: pointer;
   height: 100%;
   overflow: hidden;
   border-radius: 6px;
 }
-.carousel-wrapper .carousel1.visible {
-  transition: all 0.5s ease-in-out;
+.carousel-wrapper .carousel.carousel1.visible {
+  height: 100%;
+  width: 100%;
   opacity: 1;
+}
+.carousel-wrapper .carousel.carousel1.visible .arrow {
   display: block;
 }
-.carousel-wrapper .carousel2 {
+.carousel-wrapper .carousel.carousel2 {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  height: 0;
+  width: 0;
   opacity: 0;
   transition: all 0.5s ease-in-out;
   color: #fff;
-  display: none;
 }
-.carousel-wrapper .carousel2 .arrow {
+.carousel-wrapper .carousel.carousel2 .arrow {
   position: absolute;
   top: 0;
-  display: block;
+  display: none;
   width: 50px;
   height: 100%;
   -webkit-tap-highlight-color: transparent;
   background: url("arrow.png") 50% 2.5% no-repeat;
   background-position: center;
 }
-.carousel-wrapper .carousel2 .arrow.arrow-prev {
+.carousel-wrapper .carousel.carousel2 .arrow.arrow-prev {
   left: 0;
 }
-.carousel-wrapper .carousel2 .arrow.arrow-prev:hover {
+.carousel-wrapper .carousel.carousel2 .arrow.arrow-prev:hover,
+.carousel-wrapper .carousel.carousel2 .arrow.arrow-prev:focus {
+  outline: none;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.carousel-wrapper .carousel2 .arrow.arrow-next {
+.carousel-wrapper .carousel.carousel2 .arrow.arrow-next {
   right: 0;
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
-.carousel-wrapper .carousel2 .arrow.arrow-next:hover {
+.carousel-wrapper .carousel.carousel2 .arrow.arrow-next:hover,
+.carousel-wrapper .carousel.carousel2 .arrow.arrow-next:focus {
+  outline: none;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.carousel-wrapper .carousel2 .carousel-image {
+.carousel-wrapper .carousel.carousel2 .carousel-image {
   width: 100%;
   cursor: pointer;
   height: 100%;
   overflow: hidden;
   border-radius: 6px;
 }
-.carousel-wrapper .carousel2.visible {
-  transition: all 0.5s ease-in-out;
-  display: block;
+.carousel-wrapper .carousel.carousel2.visible {
+  height: 100%;
+  width: 100%;
   opacity: 1;
 }
-.carousel-wrapper .carousel3 {
+.carousel-wrapper .carousel.carousel2.visible .arrow {
+  display: block;
+}
+.carousel-wrapper .carousel.carousel3 {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  height: 0;
+  width: 0;
   opacity: 0;
   transition: all 0.5s ease-in-out;
   color: #fff;
-  display: none;
 }
-.carousel-wrapper .carousel3 .arrow {
+.carousel-wrapper .carousel.carousel3 .arrow {
   position: absolute;
   top: 0;
-  display: block;
+  display: none;
   width: 50px;
   height: 100%;
   -webkit-tap-highlight-color: transparent;
   background: url("arrow.png") 50% 2.5% no-repeat;
   background-position: center;
 }
-.carousel-wrapper .carousel3 .arrow.arrow-prev {
+.carousel-wrapper .carousel.carousel3 .arrow.arrow-prev {
   left: 0;
 }
-.carousel-wrapper .carousel3 .arrow.arrow-prev:hover {
+.carousel-wrapper .carousel.carousel3 .arrow.arrow-prev:hover,
+.carousel-wrapper .carousel.carousel3 .arrow.arrow-prev:focus {
+  outline: none;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.carousel-wrapper .carousel3 .arrow.arrow-next {
+.carousel-wrapper .carousel.carousel3 .arrow.arrow-next {
   right: 0;
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
-.carousel-wrapper .carousel3 .arrow.arrow-next:hover {
+.carousel-wrapper .carousel.carousel3 .arrow.arrow-next:hover,
+.carousel-wrapper .carousel.carousel3 .arrow.arrow-next:focus {
+  outline: none;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.carousel-wrapper .carousel3 .carousel-image {
+.carousel-wrapper .carousel.carousel3 .carousel-image {
   width: 100%;
   cursor: pointer;
   height: 100%;
   overflow: hidden;
   border-radius: 6px;
 }
-.carousel-wrapper .carousel3.visible {
-  transition: all 0.5s ease-in-out;
-  display: block;
+.carousel-wrapper .carousel.carousel3.visible {
+  height: 100%;
+  width: 100%;
   opacity: 1;
+}
+.carousel-wrapper .carousel.carousel3.visible .arrow {
+  display: block;
 }
 @media (max-width: 700px) {
   .carousel-wrapper {
@@ -515,7 +542,7 @@ body {
     background-image: linear-gradient(to bottom, #333, #fff);
   }
   .footer .footer-checkbox:checked ~ .footer-holder {
-    height: 120px;
+    height: 150px;
   }
   .footer .footer-checkbox:checked ~ .footer-holder .footer-item {
     display: block;
