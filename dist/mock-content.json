@@ -81,5 +81,10 @@
     "Household.jpg",
     "Coffee.jpg",
     "beverages.jpg"
+  ],
+  "carouselId": [
+    "carousel1",
+    "carousel2",
+    "carousel3"
   ]
 }

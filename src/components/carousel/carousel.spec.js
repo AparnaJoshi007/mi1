@@ -14,7 +14,7 @@ const render = (jsx) => {
 
 describe('Carousel', () => {
   beforeEach(() => {
-    output = render(<Carousel imageList={mockData.carouselImages} />);
+    output = render(<Carousel imageList={mockData.carouselImages} idList={mockData.carouselId} />);
   });
   it('should have correct class name', () => {
     const element = findWithClass(output, 'carousel-wrapper');

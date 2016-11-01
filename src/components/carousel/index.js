@@ -23,14 +23,14 @@ class Carousel extends React.Component {
 
   handleTouchMove(evt) {
     let id;
-    if (document.getElementById("carousel3").className === "carousel carousel3 visible") {
-      id = "carousel3";
+    if (document.getElementById(this.props.idList[2]).className === "carousel carousel3 visible") {
+      id = this.props.idList[2];
     }
-    else if (document.getElementById("carousel1").className === "carousel carousel1 visible") {
-      id = "carousel1";
+    else if (document.getElementById(this.props.idList[0]).className === "carousel carousel1 visible") {
+      id = this.props.idList[0];
     }
-    else if (document.getElementById("carousel2").className === "carousel carousel2 visible") {
-      id = "carousel2";
+    else if (document.getElementById(this.props.idList[1]).className === "carousel carousel2 visible") {
+      id = this.props.idList[1];
     }
     if (!xDown || !yDown) {
         return;
@@ -54,40 +54,40 @@ class Carousel extends React.Component {
   clickHandler(id, direction) {
     if (typeof document !== 'undefined') {
     if (direction === "left") {
-      if (id === "carousel1") {
-        document.getElementById("carousel3").className = "carousel carousel3 visible";
+      if (id === this.props.idList[0]) {
+        document.getElementById(this.props.idList[2]).className = "carousel carousel3 visible";
         document.getElementById("carouselImg3").className = "carousel-image displayed";
         document.getElementById(id).className = "carousel carousel1";
         document.getElementById('carouselImg1').className = "carousel-image";
       }
-      if (id === "carousel2") {
-        document.getElementById("carousel1").className = "carousel carousel1 visible";
+      if (id === this.props.idList[1]) {
+        document.getElementById(this.props.idList[0]).className = "carousel carousel1 visible";
         document.getElementById("carouselImg1").className = "carousel-image displayed";
         document.getElementById(id).className = "carousel carousel2";
         document.getElementById('carouselImg2').className = "carousel-image";
       }
-      if (id === "carousel3") {
-        document.getElementById("carousel2").className = "carousel carousel2 visible";
+      if (id === this.props.idList[2]) {
+        document.getElementById(this.props.idList[1]).className = "carousel carousel2 visible";
         document.getElementById("carouselImg2").className = "carousel-image displayed";
         document.getElementById(id).className = "carousel carousel3";
         document.getElementById('carouselImg3').className = "carousel-image";
       }
     }
     if (direction === "right") {
-      if (id === "carousel1") {
-        document.getElementById("carousel2").className = "carousel carousel2 visible";
+      if (id === this.props.idList[0]) {
+        document.getElementById(this.props.idList[1]).className = "carousel carousel2 visible";
         document.getElementById("carouselImg2").className = "carousel-image displayed";
         document.getElementById(id).className = "carousel carousel1";
         document.getElementById('carouselImg1').className = "carousel-image";
       }
-      if (id === "carousel2") {
-        document.getElementById("carousel3").className = "carousel carousel3 visible";
+      if (id === this.props.idList[1]) {
+        document.getElementById(this.props.idList[2]).className = "carousel carousel3 visible";
         document.getElementById("carouselImg3").className = "carousel-image displayed";
         document.getElementById(id).className = "carousel carousel2";
         document.getElementById('carouselImg2').className = "carousel-image";
       }
-      if (id === "carousel3") {
-        document.getElementById("carousel1").className = "carousel carousel1 visible";
+      if (id === this.props.idList[2]) {
+        document.getElementById(this.props.idList[0]).className = "carousel carousel1 visible";
         document.getElementById("carouselImg1").className = "carousel-image displayed";
         document.getElementById(id).className = "carousel carousel3";
         document.getElementById('carouselImg3').className = "carousel-image";
@@ -99,20 +99,20 @@ class Carousel extends React.Component {
   render() {
     return (
       <div className="carousel-wrapper" id="carousel">
-        <div className="carousel carousel1" id="carousel1">
-          <a href="#" id="left1" className="arrow arrow-prev" onClick={() => this.clickHandler("carousel1", "left")}>left</a>
+        <div className="carousel carousel1" id={this.props.idList[0]}>
+          <a href="#" id="left1" className="arrow arrow-prev" onClick={() => this.clickHandler(this.props.idList[0], "left")}></a>
           <img className="carousel-image" id="carouselImg1" src={this.props.imageList[0]} alt="item1" />
-          <a href="#" id="right1" className="arrow arrow-next" onClick={() => this.clickHandler("carousel1", "right")}>right</a>
+          <a href="#" id="right1" className="arrow arrow-next" onClick={() => this.clickHandler(this.props.idList[0], "right")}></a>
         </div>
-        <div className="carousel carousel2 visible" id="carousel2">
-          <a href="#" id="left2" className="arrow arrow-prev" onClick={() => this.clickHandler("carousel2", "left")}>left</a>
+        <div className="carousel carousel2 visible" id={this.props.idList[1]}>
+          <a href="#" id="left2" className="arrow arrow-prev" onClick={() => this.clickHandler(this.props.idList[1], "left")}></a>
           <img className="carousel-image displayed" id="carouselImg2" src={this.props.imageList[1]} alt="item2" />
-          <a href="#" id="right2" className="arrow arrow-next" onClick={() => this.clickHandler("carousel2", "right")}>right</a>
+          <a href="#" id="right2" className="arrow arrow-next" onClick={() => this.clickHandler(this.props.idList[1], "right")}></a>
         </div>
-        <div className="carousel carousel3" id="carousel3">
-          <a href="#" id="left3" className="arrow arrow-prev" onClick={() => this.clickHandler("carousel3", "left")}>left</a>
+        <div className="carousel carousel3" id={this.props.idList[2]}>
+          <a href="#" id="left3" className="arrow arrow-prev" onClick={() => this.clickHandler(this.props.idList[2], "left")}></a>
           <img className="carousel-image" id="carouselImg3" src={this.props.imageList[2]} alt="item3" />
-          <a href="#" id="right3" className="arrow arrow-next" onClick={() => this.clickHandler("carousel3", "right")}>right</a>
+          <a href="#" id="right3" className="arrow arrow-next" onClick={() => this.clickHandler(this.props.idList[2], "right")}></a>
         </div>
       </div>
     );
