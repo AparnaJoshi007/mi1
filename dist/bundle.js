@@ -22287,39 +22287,19 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'carousel-wrapper', id: 'carousel' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'carousel carousel1', id: this.props.idList[0] },
-	          _react2.default.createElement('a', { href: '#', id: 'left1', className: 'arrow arrow-prev', onClick: function onClick() {
-	              return _this2.clickHandler(_this2.props.idList[0], "left");
-	            } }),
-	          _react2.default.createElement('img', { className: 'carousel-image', id: 'carouselImg1', src: this.props.imageList[0], alt: 'item1' }),
-	          _react2.default.createElement('a', { href: '#', id: 'right1', className: 'arrow arrow-next', onClick: function onClick() {
-	              return _this2.clickHandler(_this2.props.idList[0], "right");
-	            } })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'carousel carousel2 visible', id: this.props.idList[1] },
-	          _react2.default.createElement('a', { href: '#', id: 'left2', className: 'arrow arrow-prev', onClick: function onClick() {
-	              return _this2.clickHandler(_this2.props.idList[1], "left");
-	            } }),
-	          _react2.default.createElement('img', { className: 'carousel-image displayed', id: 'carouselImg2', src: this.props.imageList[1], alt: 'item2' }),
-	          _react2.default.createElement('a', { href: '#', id: 'right2', className: 'arrow arrow-next', onClick: function onClick() {
-	              return _this2.clickHandler(_this2.props.idList[1], "right");
-	            } })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'carousel carousel3', id: this.props.idList[2] },
-	          _react2.default.createElement('a', { href: '#', id: 'left3', className: 'arrow arrow-prev', onClick: function onClick() {
-	              return _this2.clickHandler(_this2.props.idList[2], "left");
-	            } }),
-	          _react2.default.createElement('img', { className: 'carousel-image', id: 'carouselImg3', src: this.props.imageList[2], alt: 'item3' }),
-	          _react2.default.createElement('a', { href: '#', id: 'right3', className: 'arrow arrow-next', onClick: function onClick() {
-	              return _this2.clickHandler(_this2.props.idList[2], "right");
-	            } })
-	        )
+	        this.props.imageList.map(function (item, index) {
+	          return _react2.default.createElement(
+	            'div',
+	            { key: index, className: 'carousel carousel' + (index === 1 ? '2 visible' : index + 1), id: _this2.props.idList[index] },
+	            _react2.default.createElement('a', { href: '#', id: 'left' + (index + 1), className: 'arrow arrow-prev', onClick: function onClick() {
+	                return _this2.clickHandler(_this2.props.idList[index], "left");
+	              } }),
+	            _react2.default.createElement('img', { className: 'carousel-image' + (index === 1 ? ' displayed' : ''), id: 'carouselImg' + (index + 1), src: item, alt: 'item' + (index + 1) }),
+	            _react2.default.createElement('a', { href: '#', id: 'right' + (index + 1), className: 'arrow arrow-next', onClick: function onClick() {
+	                return _this2.clickHandler(_this2.props.idList[index], "right");
+	              } })
+	          );
+	        })
 	      );
 	    }
 	  }]);

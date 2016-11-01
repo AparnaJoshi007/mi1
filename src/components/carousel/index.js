@@ -99,21 +99,13 @@ class Carousel extends React.Component {
   render() {
     return (
       <div className="carousel-wrapper" id="carousel">
-        <div className="carousel carousel1" id={this.props.idList[0]}>
-          <a href="#" id="left1" className="arrow arrow-prev" onClick={() => this.clickHandler(this.props.idList[0], "left")}></a>
-          <img className="carousel-image" id="carouselImg1" src={this.props.imageList[0]} alt="item1" />
-          <a href="#" id="right1" className="arrow arrow-next" onClick={() => this.clickHandler(this.props.idList[0], "right")}></a>
+      {this.props.imageList.map((item, index) =>
+        <div key={index} className={`carousel carousel${((index === 1) ? '2 visible' : index+1)}`} id={this.props.idList[index]}>
+          <a href="#" id={`left${index + 1}`} className="arrow arrow-prev" onClick={() => this.clickHandler(this.props.idList[index], "left")}></a>
+          <img className={`carousel-image${((index === 1) ? ' displayed' : '')}`} id={`carouselImg${index + 1}`} src={item} alt={`item${index + 1}`} />
+          <a href="#" id={`right${index + 1}`} className="arrow arrow-next" onClick={() => this.clickHandler(this.props.idList[index], "right")}></a>
         </div>
-        <div className="carousel carousel2 visible" id={this.props.idList[1]}>
-          <a href="#" id="left2" className="arrow arrow-prev" onClick={() => this.clickHandler(this.props.idList[1], "left")}></a>
-          <img className="carousel-image displayed" id="carouselImg2" src={this.props.imageList[1]} alt="item2" />
-          <a href="#" id="right2" className="arrow arrow-next" onClick={() => this.clickHandler(this.props.idList[1], "right")}></a>
-        </div>
-        <div className="carousel carousel3" id={this.props.idList[2]}>
-          <a href="#" id="left3" className="arrow arrow-prev" onClick={() => this.clickHandler(this.props.idList[2], "left")}></a>
-          <img className="carousel-image" id="carouselImg3" src={this.props.imageList[2]} alt="item3" />
-          <a href="#" id="right3" className="arrow arrow-next" onClick={() => this.clickHandler(this.props.idList[2], "right")}></a>
-        </div>
+      )}
       </div>
     );
   }
