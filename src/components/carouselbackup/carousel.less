@@ -5,36 +5,6 @@
   position: relative;
   height:400px;
   text-align: center;
-  #carouselRadio1 {
-    &:checked + .carousel-radio-label {
-      background-color: @hovercolorheader;
-    }
-    visibility: hidden;
-  }
-  #carouselRadio2 {
-    &:checked + .carousel-radio-label {
-      background-color: @hovercolorheader;
-    }
-    visibility: hidden;
-  }
-  #carouselRadio3 {
-    &:checked + .carousel-radio-label {
-      background-color: @hovercolorheader;
-    }
-    visibility: hidden;
-  }
-  .carousel-radio-label {
-    display: inline;
-    position: relative;
-    padding: 1px 9px;
-    left: -15px;
-    top: 350px;
-    z-index: 9;
-    cursor: pointer;
-    border: 2px solid @hovercolorheader;
-    border-radius: 100%;
-    background-color: transparent;
-  }
   .carousel {
     transition: all 1s ease-in-out;
     &.carousel1 {
@@ -53,7 +23,6 @@
         width: 50px;
         height: 100%;
         -webkit-tap-highlight-color: transparent;
-        color: transparent;
         background: url("./arrow.png") 50% 50%/20px no-repeat;
         background-position: center;
         &.arrow-prev {
@@ -74,7 +43,6 @@
         }
       }
       .carousel-image {
-        display: none;
         width: 100%;
         cursor: pointer;
         height: 100%;
@@ -83,9 +51,6 @@
       }
       &.visible {
         opacity:1;
-        .carousel-image {
-          display: block;
-        }
         .arrow {
           display: block;
           z-index: 3;
@@ -108,7 +73,6 @@
         width: 50px;
         height: 100%;
         -webkit-tap-highlight-color: transparent;
-        color: transparent;
         background: url("./arrow.png") 50% 50%/20px no-repeat;
         background-position: center;
         &.arrow-prev {
@@ -129,7 +93,6 @@
         }
       }
       .carousel-image {
-        display: none;
         width: 100%;
         cursor: pointer;
         height: 100%;
@@ -138,9 +101,6 @@
       }
       &.visible {
         opacity: 1;
-        .carousel-image {
-          display: block;
-        }
         .arrow {
           display: block;
           z-index: 3;
@@ -163,7 +123,6 @@
         width: 50px;
         height: 100%;
         -webkit-tap-highlight-color: transparent;
-        color: transparent;
         background: url("./arrow.png") 50% 50%/20px no-repeat;
         background-position: center;
         &.arrow-prev {
@@ -184,7 +143,6 @@
         }
       }
       .carousel-image {
-        display: none;
         width: 100%;
         cursor: pointer;
         height: 100%;
@@ -193,9 +151,6 @@
       }
       &.visible {
         opacity: 1;
-        .carousel-image {
-          display: block;
-        }
         .arrow {
           display: block;
           z-index: 3;
@@ -208,18 +163,12 @@
 @media (max-width: 700px) {
   .carousel-wrapper {
     height: 320px;
-    .carousel-radio-label {
-      top: 280px;
-    }
   }
 }
 
 @media (max-width: 580px) {
   .carousel-wrapper {
     height: 200px;
-    .carousel-radio-label {
-      top: 160px;
-    }
     .carousel {
       &.carousel1 {
         .carousel-image {

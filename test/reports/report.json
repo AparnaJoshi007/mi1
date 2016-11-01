@@ -1,0 +1,17 @@
+{
+  "tests" : [ {
+    "name" : "test/bourntest.gspec",
+    "startedAt" : 1478005970916,
+    "endedAt" : 1478005984726,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 8,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 8
+    },
+    "testId" : "1-test-bourntest.gspec",
+    "failed" : false,
+    "duration" : 13810
+  } ]
+}

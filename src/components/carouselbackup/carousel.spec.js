@@ -16,6 +16,10 @@ describe('Carousel', () => {
   beforeEach(() => {
     output = render(<Carousel imageList={mockData.carouselImages} />);
   });
+  it('should have correct number of children', () => {
+    const element = findWithClass(output, 'carousel-wrapper');
+    expect(element.props.children.length).toEqual(3);
+  });
   it('should have correct class name', () => {
     const element = findWithClass(output, 'carousel-wrapper');
     expect(element.props.className.split(" ")).toContain('carousel-wrapper');

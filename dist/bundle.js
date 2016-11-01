@@ -50,7 +50,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _react = __webpack_require__(/*! react */ 1);
@@ -59,32 +59,26 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
 	
-	var _isomorphicFetch = __webpack_require__(/*! isomorphic-fetch */ 172);
-	
-	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
-	
-	var _page = __webpack_require__(/*! ./components/page */ 174);
+	var _page = __webpack_require__(/*! ./components/page */ 172);
 	
 	var _page2 = _interopRequireDefault(_page);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var App = function App(props) {
-	    return _react2.default.createElement(_page2.default, { data: props.data });
+	  return _react2.default.createElement(_page2.default, { data: props.data });
 	};
 	
+	App.propTypes = {
+	  data: _react2.default.PropTypes.object
+	};
 	exports.default = App;
 	
 	
 	if (typeof document !== 'undefined') {
-	    var data = (0, _isomorphicFetch2.default)('http://localhost:3000/mock-content.json').then(function (response) {
-	        if (response.status >= 400) {
-	            throw new Error("Bad response from server");
-	        }
-	        return response.json();
-	    }).then(function (props) {
-	        (0, _reactDom.render)(_react2.default.createElement(App, { data: props }), document.getElementById('app'));
-	    });
+	  var props = document.getElementById('page-content').getAttribute('data-content');
+	  props = JSON.parse(props);
+	  (0, _reactDom.render)(_react2.default.createElement(App, { data: props }), document.getElementById('app'));
 	}
 
 /***/ },
@@ -21969,463 +21963,6 @@
 
 /***/ },
 /* 172 */
-/*!****************************************************!*\
-  !*** ./~/isomorphic-fetch/fetch-npm-browserify.js ***!
-  \****************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	// the whatwg-fetch polyfill installs the fetch() function
-	// on the global object (window or self)
-	//
-	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(/*! whatwg-fetch */ 173);
-	module.exports = self.fetch.bind(self);
-
-
-/***/ },
-/* 173 */
-/*!****************************************************!*\
-  !*** ./~/isomorphic-fetch/~/whatwg-fetch/fetch.js ***!
-  \****************************************************/
-/***/ function(module, exports) {
-
-	(function(self) {
-	  'use strict';
-	
-	  if (self.fetch) {
-	    return
-	  }
-	
-	  var support = {
-	    searchParams: 'URLSearchParams' in self,
-	    iterable: 'Symbol' in self && 'iterator' in Symbol,
-	    blob: 'FileReader' in self && 'Blob' in self && (function() {
-	      try {
-	        new Blob()
-	        return true
-	      } catch(e) {
-	        return false
-	      }
-	    })(),
-	    formData: 'FormData' in self,
-	    arrayBuffer: 'ArrayBuffer' in self
-	  }
-	
-	  function normalizeName(name) {
-	    if (typeof name !== 'string') {
-	      name = String(name)
-	    }
-	    if (/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)) {
-	      throw new TypeError('Invalid character in header field name')
-	    }
-	    return name.toLowerCase()
-	  }
-	
-	  function normalizeValue(value) {
-	    if (typeof value !== 'string') {
-	      value = String(value)
-	    }
-	    return value
-	  }
-	
-	  // Build a destructive iterator for the value list
-	  function iteratorFor(items) {
-	    var iterator = {
-	      next: function() {
-	        var value = items.shift()
-	        return {done: value === undefined, value: value}
-	      }
-	    }
-	
-	    if (support.iterable) {
-	      iterator[Symbol.iterator] = function() {
-	        return iterator
-	      }
-	    }
-	
-	    return iterator
-	  }
-	
-	  function Headers(headers) {
-	    this.map = {}
-	
-	    if (headers instanceof Headers) {
-	      headers.forEach(function(value, name) {
-	        this.append(name, value)
-	      }, this)
-	
-	    } else if (headers) {
-	      Object.getOwnPropertyNames(headers).forEach(function(name) {
-	        this.append(name, headers[name])
-	      }, this)
-	    }
-	  }
-	
-	  Headers.prototype.append = function(name, value) {
-	    name = normalizeName(name)
-	    value = normalizeValue(value)
-	    var list = this.map[name]
-	    if (!list) {
-	      list = []
-	      this.map[name] = list
-	    }
-	    list.push(value)
-	  }
-	
-	  Headers.prototype['delete'] = function(name) {
-	    delete this.map[normalizeName(name)]
-	  }
-	
-	  Headers.prototype.get = function(name) {
-	    var values = this.map[normalizeName(name)]
-	    return values ? values[0] : null
-	  }
-	
-	  Headers.prototype.getAll = function(name) {
-	    return this.map[normalizeName(name)] || []
-	  }
-	
-	  Headers.prototype.has = function(name) {
-	    return this.map.hasOwnProperty(normalizeName(name))
-	  }
-	
-	  Headers.prototype.set = function(name, value) {
-	    this.map[normalizeName(name)] = [normalizeValue(value)]
-	  }
-	
-	  Headers.prototype.forEach = function(callback, thisArg) {
-	    Object.getOwnPropertyNames(this.map).forEach(function(name) {
-	      this.map[name].forEach(function(value) {
-	        callback.call(thisArg, value, name, this)
-	      }, this)
-	    }, this)
-	  }
-	
-	  Headers.prototype.keys = function() {
-	    var items = []
-	    this.forEach(function(value, name) { items.push(name) })
-	    return iteratorFor(items)
-	  }
-	
-	  Headers.prototype.values = function() {
-	    var items = []
-	    this.forEach(function(value) { items.push(value) })
-	    return iteratorFor(items)
-	  }
-	
-	  Headers.prototype.entries = function() {
-	    var items = []
-	    this.forEach(function(value, name) { items.push([name, value]) })
-	    return iteratorFor(items)
-	  }
-	
-	  if (support.iterable) {
-	    Headers.prototype[Symbol.iterator] = Headers.prototype.entries
-	  }
-	
-	  function consumed(body) {
-	    if (body.bodyUsed) {
-	      return Promise.reject(new TypeError('Already read'))
-	    }
-	    body.bodyUsed = true
-	  }
-	
-	  function fileReaderReady(reader) {
-	    return new Promise(function(resolve, reject) {
-	      reader.onload = function() {
-	        resolve(reader.result)
-	      }
-	      reader.onerror = function() {
-	        reject(reader.error)
-	      }
-	    })
-	  }
-	
-	  function readBlobAsArrayBuffer(blob) {
-	    var reader = new FileReader()
-	    reader.readAsArrayBuffer(blob)
-	    return fileReaderReady(reader)
-	  }
-	
-	  function readBlobAsText(blob) {
-	    var reader = new FileReader()
-	    reader.readAsText(blob)
-	    return fileReaderReady(reader)
-	  }
-	
-	  function Body() {
-	    this.bodyUsed = false
-	
-	    this._initBody = function(body) {
-	      this._bodyInit = body
-	      if (typeof body === 'string') {
-	        this._bodyText = body
-	      } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {
-	        this._bodyBlob = body
-	      } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
-	        this._bodyFormData = body
-	      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
-	        this._bodyText = body.toString()
-	      } else if (!body) {
-	        this._bodyText = ''
-	      } else if (support.arrayBuffer && ArrayBuffer.prototype.isPrototypeOf(body)) {
-	        // Only support ArrayBuffers for POST method.
-	        // Receiving ArrayBuffers happens via Blobs, instead.
-	      } else {
-	        throw new Error('unsupported BodyInit type')
-	      }
-	
-	      if (!this.headers.get('content-type')) {
-	        if (typeof body === 'string') {
-	          this.headers.set('content-type', 'text/plain;charset=UTF-8')
-	        } else if (this._bodyBlob && this._bodyBlob.type) {
-	          this.headers.set('content-type', this._bodyBlob.type)
-	        } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
-	          this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')
-	        }
-	      }
-	    }
-	
-	    if (support.blob) {
-	      this.blob = function() {
-	        var rejected = consumed(this)
-	        if (rejected) {
-	          return rejected
-	        }
-	
-	        if (this._bodyBlob) {
-	          return Promise.resolve(this._bodyBlob)
-	        } else if (this._bodyFormData) {
-	          throw new Error('could not read FormData body as blob')
-	        } else {
-	          return Promise.resolve(new Blob([this._bodyText]))
-	        }
-	      }
-	
-	      this.arrayBuffer = function() {
-	        return this.blob().then(readBlobAsArrayBuffer)
-	      }
-	
-	      this.text = function() {
-	        var rejected = consumed(this)
-	        if (rejected) {
-	          return rejected
-	        }
-	
-	        if (this._bodyBlob) {
-	          return readBlobAsText(this._bodyBlob)
-	        } else if (this._bodyFormData) {
-	          throw new Error('could not read FormData body as text')
-	        } else {
-	          return Promise.resolve(this._bodyText)
-	        }
-	      }
-	    } else {
-	      this.text = function() {
-	        var rejected = consumed(this)
-	        return rejected ? rejected : Promise.resolve(this._bodyText)
-	      }
-	    }
-	
-	    if (support.formData) {
-	      this.formData = function() {
-	        return this.text().then(decode)
-	      }
-	    }
-	
-	    this.json = function() {
-	      return this.text().then(JSON.parse)
-	    }
-	
-	    return this
-	  }
-	
-	  // HTTP methods whose capitalization should be normalized
-	  var methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT']
-	
-	  function normalizeMethod(method) {
-	    var upcased = method.toUpperCase()
-	    return (methods.indexOf(upcased) > -1) ? upcased : method
-	  }
-	
-	  function Request(input, options) {
-	    options = options || {}
-	    var body = options.body
-	    if (Request.prototype.isPrototypeOf(input)) {
-	      if (input.bodyUsed) {
-	        throw new TypeError('Already read')
-	      }
-	      this.url = input.url
-	      this.credentials = input.credentials
-	      if (!options.headers) {
-	        this.headers = new Headers(input.headers)
-	      }
-	      this.method = input.method
-	      this.mode = input.mode
-	      if (!body) {
-	        body = input._bodyInit
-	        input.bodyUsed = true
-	      }
-	    } else {
-	      this.url = input
-	    }
-	
-	    this.credentials = options.credentials || this.credentials || 'omit'
-	    if (options.headers || !this.headers) {
-	      this.headers = new Headers(options.headers)
-	    }
-	    this.method = normalizeMethod(options.method || this.method || 'GET')
-	    this.mode = options.mode || this.mode || null
-	    this.referrer = null
-	
-	    if ((this.method === 'GET' || this.method === 'HEAD') && body) {
-	      throw new TypeError('Body not allowed for GET or HEAD requests')
-	    }
-	    this._initBody(body)
-	  }
-	
-	  Request.prototype.clone = function() {
-	    return new Request(this)
-	  }
-	
-	  function decode(body) {
-	    var form = new FormData()
-	    body.trim().split('&').forEach(function(bytes) {
-	      if (bytes) {
-	        var split = bytes.split('=')
-	        var name = split.shift().replace(/\+/g, ' ')
-	        var value = split.join('=').replace(/\+/g, ' ')
-	        form.append(decodeURIComponent(name), decodeURIComponent(value))
-	      }
-	    })
-	    return form
-	  }
-	
-	  function headers(xhr) {
-	    var head = new Headers()
-	    var pairs = (xhr.getAllResponseHeaders() || '').trim().split('\n')
-	    pairs.forEach(function(header) {
-	      var split = header.trim().split(':')
-	      var key = split.shift().trim()
-	      var value = split.join(':').trim()
-	      head.append(key, value)
-	    })
-	    return head
-	  }
-	
-	  Body.call(Request.prototype)
-	
-	  function Response(bodyInit, options) {
-	    if (!options) {
-	      options = {}
-	    }
-	
-	    this.type = 'default'
-	    this.status = options.status
-	    this.ok = this.status >= 200 && this.status < 300
-	    this.statusText = options.statusText
-	    this.headers = options.headers instanceof Headers ? options.headers : new Headers(options.headers)
-	    this.url = options.url || ''
-	    this._initBody(bodyInit)
-	  }
-	
-	  Body.call(Response.prototype)
-	
-	  Response.prototype.clone = function() {
-	    return new Response(this._bodyInit, {
-	      status: this.status,
-	      statusText: this.statusText,
-	      headers: new Headers(this.headers),
-	      url: this.url
-	    })
-	  }
-	
-	  Response.error = function() {
-	    var response = new Response(null, {status: 0, statusText: ''})
-	    response.type = 'error'
-	    return response
-	  }
-	
-	  var redirectStatuses = [301, 302, 303, 307, 308]
-	
-	  Response.redirect = function(url, status) {
-	    if (redirectStatuses.indexOf(status) === -1) {
-	      throw new RangeError('Invalid status code')
-	    }
-	
-	    return new Response(null, {status: status, headers: {location: url}})
-	  }
-	
-	  self.Headers = Headers
-	  self.Request = Request
-	  self.Response = Response
-	
-	  self.fetch = function(input, init) {
-	    return new Promise(function(resolve, reject) {
-	      var request
-	      if (Request.prototype.isPrototypeOf(input) && !init) {
-	        request = input
-	      } else {
-	        request = new Request(input, init)
-	      }
-	
-	      var xhr = new XMLHttpRequest()
-	
-	      function responseURL() {
-	        if ('responseURL' in xhr) {
-	          return xhr.responseURL
-	        }
-	
-	        // Avoid security warnings on getResponseHeader when not allowed by CORS
-	        if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
-	          return xhr.getResponseHeader('X-Request-URL')
-	        }
-	
-	        return
-	      }
-	
-	      xhr.onload = function() {
-	        var options = {
-	          status: xhr.status,
-	          statusText: xhr.statusText,
-	          headers: headers(xhr),
-	          url: responseURL()
-	        }
-	        var body = 'response' in xhr ? xhr.response : xhr.responseText
-	        resolve(new Response(body, options))
-	      }
-	
-	      xhr.onerror = function() {
-	        reject(new TypeError('Network request failed'))
-	      }
-	
-	      xhr.ontimeout = function() {
-	        reject(new TypeError('Network request failed'))
-	      }
-	
-	      xhr.open(request.method, request.url, true)
-	
-	      if (request.credentials === 'include') {
-	        xhr.withCredentials = true
-	      }
-	
-	      if ('responseType' in xhr && support.blob) {
-	        xhr.responseType = 'blob'
-	      }
-	
-	      request.headers.forEach(function(value, name) {
-	        xhr.setRequestHeader(name, value)
-	      })
-	
-	      xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit)
-	    })
-	  }
-	  self.fetch.polyfill = true
-	})(typeof self !== 'undefined' ? self : this);
-
-
-/***/ },
-/* 174 */
 /*!**************************************!*\
   !*** ./src/components/page/index.js ***!
   \**************************************/
@@ -22443,19 +21980,19 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _header = __webpack_require__(/*! ../header */ 175);
+	var _header = __webpack_require__(/*! ../header */ 173);
 	
 	var _header2 = _interopRequireDefault(_header);
 	
-	var _carousel = __webpack_require__(/*! ../carousel */ 176);
+	var _carousel = __webpack_require__(/*! ../carousel */ 174);
 	
 	var _carousel2 = _interopRequireDefault(_carousel);
 	
-	var _body = __webpack_require__(/*! ../body */ 177);
+	var _body = __webpack_require__(/*! ../body */ 175);
 	
 	var _body2 = _interopRequireDefault(_body);
 	
-	var _footer = __webpack_require__(/*! ../footer */ 178);
+	var _footer = __webpack_require__(/*! ../footer */ 176);
 	
 	var _footer2 = _interopRequireDefault(_footer);
 	
@@ -22493,14 +22030,14 @@
 	          _react2.default.createElement(_carousel2.default, { imageList: carouselImages }),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'row' },
+	            { className: 'row', id: 'body' },
 	            imageList.map(function (item, index) {
 	              return _react2.default.createElement(_body2.default, { key: index, image: item.image, title: item.title });
 	            })
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'row' },
+	            { className: 'row', id: 'footer' },
 	            data.footer.map(function (item, index) {
 	              return _react2.default.createElement(
 	                'div',
@@ -22525,10 +22062,11 @@
 	Page.propTypes = {
 	  data: _react2.default.PropTypes.object.isRequired
 	};
+	
 	exports.default = Page;
 
 /***/ },
-/* 175 */
+/* 173 */
 /*!****************************************!*\
   !*** ./src/components/header/index.js ***!
   \****************************************/
@@ -22591,7 +22129,7 @@
 	          { className: "navbar-right" },
 	          _react2.default.createElement(
 	            "a",
-	            { className: "navbar-right-link", href: "/" },
+	            { className: "navbar-right-link", href: "/login" },
 	            props.navright
 	          )
 	        )
@@ -22609,7 +22147,7 @@
 	exports.default = Header;
 
 /***/ },
-/* 176 */
+/* 174 */
 /*!******************************************!*\
   !*** ./src/components/carousel/index.js ***!
   \******************************************/
@@ -22676,11 +22214,9 @@
 	      } else if (document.getElementById("carousel2").className === "carousel carousel2 visible") {
 	        id = "carousel2";
 	      }
-	
 	      if (!xDown || !yDown) {
 	        return;
 	      }
-	
 	      var xUp = evt.touches[0].clientX;
 	      var yUp = evt.touches[0].clientY;
 	      var xDiff = xDown - xUp;
@@ -22703,29 +22239,41 @@
 	        if (direction === "left") {
 	          if (id === "carousel1") {
 	            document.getElementById("carousel3").className = "carousel carousel3 visible";
+	            document.getElementById("carouselImg3").className = "carousel-image displayed";
 	            document.getElementById(id).className = "carousel carousel1";
+	            document.getElementById('carouselImg1').className = "carousel-image";
 	          }
 	          if (id === "carousel2") {
 	            document.getElementById("carousel1").className = "carousel carousel1 visible";
+	            document.getElementById("carouselImg1").className = "carousel-image displayed";
 	            document.getElementById(id).className = "carousel carousel2";
+	            document.getElementById('carouselImg2').className = "carousel-image";
 	          }
 	          if (id === "carousel3") {
 	            document.getElementById("carousel2").className = "carousel carousel2 visible";
+	            document.getElementById("carouselImg2").className = "carousel-image displayed";
 	            document.getElementById(id).className = "carousel carousel3";
+	            document.getElementById('carouselImg3').className = "carousel-image";
 	          }
 	        }
 	        if (direction === "right") {
 	          if (id === "carousel1") {
 	            document.getElementById("carousel2").className = "carousel carousel2 visible";
+	            document.getElementById("carouselImg2").className = "carousel-image displayed";
 	            document.getElementById(id).className = "carousel carousel1";
+	            document.getElementById('carouselImg1').className = "carousel-image";
 	          }
 	          if (id === "carousel2") {
 	            document.getElementById("carousel3").className = "carousel carousel3 visible";
+	            document.getElementById("carouselImg3").className = "carousel-image displayed";
 	            document.getElementById(id).className = "carousel carousel2";
+	            document.getElementById('carouselImg2').className = "carousel-image";
 	          }
 	          if (id === "carousel3") {
 	            document.getElementById("carousel1").className = "carousel carousel1 visible";
+	            document.getElementById("carouselImg1").className = "carousel-image displayed";
 	            document.getElementById(id).className = "carousel carousel3";
+	            document.getElementById('carouselImg3').className = "carousel-image";
 	          }
 	        }
 	      }
@@ -22741,35 +22289,59 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'carousel carousel1', id: 'carousel1' },
-	          _react2.default.createElement('a', { href: '#', className: 'arrow arrow-prev', onClick: function onClick() {
-	              return _this2.clickHandler("carousel1", "left");
-	            } }),
-	          _react2.default.createElement('img', { className: 'carousel-image', src: this.props.imageList[0], alt: 'item1' }),
-	          _react2.default.createElement('a', { href: '#', className: 'arrow arrow-next', onClick: function onClick() {
-	              return _this2.clickHandler("carousel1", "right");
-	            } })
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#', id: 'left1', className: 'arrow arrow-prev', onClick: function onClick() {
+	                return _this2.clickHandler("carousel1", "left");
+	              } },
+	            'left'
+	          ),
+	          _react2.default.createElement('img', { className: 'carousel-image', id: 'carouselImg1', src: this.props.imageList[0], alt: 'item1' }),
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#', id: 'right1', className: 'arrow arrow-next', onClick: function onClick() {
+	                return _this2.clickHandler("carousel1", "right");
+	              } },
+	            'right'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'carousel carousel2 visible', id: 'carousel2' },
-	          _react2.default.createElement('a', { href: '#', className: 'arrow arrow-prev', onClick: function onClick() {
-	              return _this2.clickHandler("carousel2", "left");
-	            } }),
-	          _react2.default.createElement('img', { className: 'carousel-image', src: this.props.imageList[1], alt: 'item2' }),
-	          _react2.default.createElement('a', { href: '#', className: 'arrow arrow-next', onClick: function onClick() {
-	              return _this2.clickHandler("carousel2", "right");
-	            } })
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#', id: 'left2', className: 'arrow arrow-prev', onClick: function onClick() {
+	                return _this2.clickHandler("carousel2", "left");
+	              } },
+	            'left'
+	          ),
+	          _react2.default.createElement('img', { className: 'carousel-image displayed', id: 'carouselImg2', src: this.props.imageList[1], alt: 'item2' }),
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#', id: 'right2', className: 'arrow arrow-next', onClick: function onClick() {
+	                return _this2.clickHandler("carousel2", "right");
+	              } },
+	            'right'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'carousel carousel3', id: 'carousel3' },
-	          _react2.default.createElement('a', { href: '#', className: 'arrow arrow-prev', onClick: function onClick() {
-	              return _this2.clickHandler("carousel3", "left");
-	            } }),
-	          _react2.default.createElement('img', { className: 'carousel-image', src: this.props.imageList[2], alt: 'item3' }),
-	          _react2.default.createElement('a', { href: '#', className: 'arrow arrow-next', onClick: function onClick() {
-	              return _this2.clickHandler("carousel3", "right");
-	            } })
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#', id: 'left3', className: 'arrow arrow-prev', onClick: function onClick() {
+	                return _this2.clickHandler("carousel3", "left");
+	              } },
+	            'left'
+	          ),
+	          _react2.default.createElement('img', { className: 'carousel-image', id: 'carouselImg3', src: this.props.imageList[2], alt: 'item3' }),
+	          _react2.default.createElement(
+	            'a',
+	            { href: '#', id: 'right3', className: 'arrow arrow-next', onClick: function onClick() {
+	                return _this2.clickHandler("carousel3", "right");
+	              } },
+	            'right'
+	          )
 	        )
 	      );
 	    }
@@ -22785,7 +22357,7 @@
 	exports.default = Carousel;
 
 /***/ },
-/* 177 */
+/* 175 */
 /*!**************************************!*\
   !*** ./src/components/body/index.js ***!
   \**************************************/
@@ -22828,7 +22400,7 @@
 	exports.default = Body;
 
 /***/ },
-/* 178 */
+/* 176 */
 /*!****************************************!*\
   !*** ./src/components/footer/index.js ***!
   \****************************************/
@@ -22850,13 +22422,13 @@
 	  return _react2.default.createElement(
 	    "div",
 	    { className: "footer" },
-	    _react2.default.createElement("input", { type: "checkbox", className: "footer-checkbox", id: "footerCheckBox " + props.id }),
+	    _react2.default.createElement("input", { type: "checkbox", className: "footer-checkbox", id: "footerCheckBox" + props.id }),
 	    _react2.default.createElement(
 	      "div",
 	      { className: "footer-wrapper" },
 	      _react2.default.createElement(
 	        "label",
-	        { htmlFor: "footerCheckBox " + props.id, className: "footer-heading" },
+	        { htmlFor: "footerCheckBox" + props.id, className: "footer-heading" },
 	        props.label,
 	        _react2.default.createElement(
 	          "span",
@@ -22867,14 +22439,14 @@
 	    ),
 	    _react2.default.createElement(
 	      "ul",
-	      { className: "footer-holder", id: "footerLink " + props.id },
+	      { className: "footer-holder", id: "footerLink" + props.id },
 	      props.content.map(function (item, index) {
 	        return _react2.default.createElement(
 	          "li",
 	          { key: index, className: "footer-item" },
 	          _react2.default.createElement(
 	            "a",
-	            { className: "footer-link", href: "/" },
+	            { className: "footer-link", href: "/footer" },
 	            item
 	          )
 	        );

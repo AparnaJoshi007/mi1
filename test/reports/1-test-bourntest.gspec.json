@@ -1,0 +1,169 @@
+{
+  "testId" : "1-test-bourntest.gspec",
+  "name" : "test/bourntest.gspec",
+  "report" : {
+    "nodes" : [ {
+      "name" : "Simple check",
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "check  test/bourntest.gspec --url http://localhost:3000 --size 1920x1080 --htmlreport test/reports -Dwebdriver.chrome.driver=/usr/lib/node_modules/galenframework-cli/node_modules/chromedriver/lib/chromedriver/chromedriver",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: test/bourntest.gspec included tags: ",
+          "status" : "info",
+          "time" : 1478005984650,
+          "sections" : [ {
+            "name" : "Header",
+            "place" : {
+              "filePath" : "test/bourntest.gspec",
+              "lineNumber" : 10
+            },
+            "objects" : [ {
+              "name" : "header",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/bourntest.gspec",
+                  "lineNumber" : 12
+                },
+                "name" : "width 100% of screen/width",
+                "highlight" : [ "header" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/bourntest.gspec",
+                  "lineNumber" : 13
+                },
+                "name" : "height 44px",
+                "highlight" : [ "header" ]
+              } ]
+            }, {
+              "name" : "logo",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/bourntest.gspec",
+                  "lineNumber" : 15
+                },
+                "name" : "inside header 0px left",
+                "highlight" : [ "logo", "header" ]
+              } ]
+            }, {
+              "name" : "navitems",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/bourntest.gspec",
+                  "lineNumber" : 18
+                },
+                "name" : "inside header",
+                "highlight" : [ "navitems", "header" ]
+              } ]
+            } ]
+          }, {
+            "name" : "Grid",
+            "place" : {
+              "filePath" : "test/bourntest.gspec",
+              "lineNumber" : 20
+            },
+            "objects" : [ {
+              "name" : "grid",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/bourntest.gspec",
+                  "lineNumber" : 22
+                },
+                "name" : "width 75% of header/width",
+                "highlight" : [ "grid" ]
+              } ]
+            } ]
+          }, {
+            "name" : "Carousel",
+            "place" : {
+              "filePath" : "test/bourntest.gspec",
+              "lineNumber" : 24
+            },
+            "objects" : [ {
+              "name" : "carousel",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/bourntest.gspec",
+                  "lineNumber" : 26
+                },
+                "name" : "inside grid",
+                "highlight" : [ "carousel", "grid" ]
+              } ]
+            } ]
+          }, {
+            "name" : "Body",
+            "place" : {
+              "filePath" : "test/bourntest.gspec",
+              "lineNumber" : 28
+            },
+            "objects" : [ {
+              "name" : "body",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/bourntest.gspec",
+                  "lineNumber" : 30
+                },
+                "name" : "inside grid",
+                "highlight" : [ "body", "grid" ]
+              } ]
+            } ]
+          }, {
+            "name" : "Footer",
+            "place" : {
+              "filePath" : "test/bourntest.gspec",
+              "lineNumber" : 32
+            },
+            "objects" : [ {
+              "name" : "footer",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "test/bourntest.gspec",
+                  "lineNumber" : 34
+                },
+                "name" : "inside grid",
+                "highlight" : [ "footer", "grid" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "footer" : {
+              "area" : [ 169, 945, 1012, 186 ]
+            },
+            "grid" : {
+              "area" : [ 169, 56, 1012, 1075 ]
+            },
+            "header" : {
+              "area" : [ 0, 0, 1349, 44 ]
+            },
+            "logo" : {
+              "area" : [ 0, 0, 87, 44 ]
+            },
+            "navitems" : {
+              "area" : [ 0, 0, 1349, 0 ]
+            },
+            "carousel" : {
+              "area" : [ 169, 56, 1012, 400 ]
+            },
+            "body" : {
+              "area" : [ 169, 456, 1012, 489 ]
+            }
+          },
+          "screenshot" : "layout-1-screenshot.png",
+          "type" : "layout"
+        } ],
+        "time" : 1478005979845,
+        "type" : "node"
+      } ],
+      "time" : 1478005970919,
+      "type" : "node"
+    } ]
+  }
+}

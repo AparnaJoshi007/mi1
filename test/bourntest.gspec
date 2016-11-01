@@ -1,0 +1,34 @@
+@objects
+  header css .navbar
+  logo css .navbar-logo
+  navitems css .navbar-holder
+  grid css .grid
+  carousel css .carousel-wrapper
+  body id body
+  footer id footer
+
+= Header =
+  header:
+    width 100% of screen/width
+    height 44px
+  logo:
+    inside header 0px left
+
+  navitems:
+    inside header
+
+= Grid =
+  grid:
+    width 75% of header/width
+
+= Carousel =
+  carousel:
+    inside grid
+
+= Body =
+  body:
+    inside grid
+
+= Footer =
+  footer:
+    inside grid

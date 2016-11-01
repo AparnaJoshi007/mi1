@@ -8,7 +8,7 @@ const Header = props => (
       <label htmlFor="navBarCheckBox" className="icon"><span aria-hidden="true"><i className="navbar-icon-link" /></span></label>
       <ul className="navbar-holder" id="navBar">
         {props.navList.map((item, index) => <li key={index} className="navbar-item"><a className="navbar-link" href="/">{item}</a></li>)}
-        <li className="navbar-right"><a className="navbar-right-link" href="/">{props.navright}</a></li>
+        <li className="navbar-right"><a className="navbar-right-link" href="/login">{props.navright}</a></li>
       </ul>
     </nav>
   </div>
