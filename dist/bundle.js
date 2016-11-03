@@ -22238,43 +22238,23 @@
 	    value: function clickHandler(id, direction) {
 	      if (typeof document !== 'undefined') {
 	        if (direction === "left") {
-	          if (id === this.props.idList[0]) {
-	            document.getElementById(this.props.idList[2]).className = "carousel carousel3 visible";
-	            document.getElementById("carouselImg3").className = "carousel-image displayed";
-	            document.getElementById(id).className = "carousel carousel1";
-	            document.getElementById('carouselImg1').className = "carousel-image";
-	          }
-	          if (id === this.props.idList[1]) {
-	            document.getElementById(this.props.idList[0]).className = "carousel carousel1 visible";
-	            document.getElementById("carouselImg1").className = "carousel-image displayed";
-	            document.getElementById(id).className = "carousel carousel2";
-	            document.getElementById('carouselImg2').className = "carousel-image";
-	          }
-	          if (id === this.props.idList[2]) {
-	            document.getElementById(this.props.idList[1]).className = "carousel carousel2 visible";
-	            document.getElementById("carouselImg2").className = "carousel-image displayed";
-	            document.getElementById(id).className = "carousel carousel3";
-	            document.getElementById('carouselImg3').className = "carousel-image";
+	          for (var i = 0; i < 3; i++) {
+	            if (id === this.props.idList[i]) {
+	              document.getElementById(this.props.idList[i - 1 < 0 ? '2' : i - 1]).className = 'carousel carousel' + (i - 1 < 0 ? '3' : i) + ' visible';
+	              document.getElementById('carouselImg' + (i - 1 < 0 ? '3' : i)).className = "carousel-image displayed";
+	              document.getElementById(id).className = 'carousel carousel' + (i + 1);
+	              document.getElementById('carouselImg' + (i + 1)).className = "carousel-image";
+	            }
 	          }
 	        }
 	        if (direction === "right") {
-	          if (id === this.props.idList[0]) {
-	            document.getElementById(this.props.idList[1]).className = "carousel carousel2 visible";
-	            document.getElementById("carouselImg2").className = "carousel-image displayed";
-	            document.getElementById(id).className = "carousel carousel1";
-	            document.getElementById('carouselImg1').className = "carousel-image";
-	          }
-	          if (id === this.props.idList[1]) {
-	            document.getElementById(this.props.idList[2]).className = "carousel carousel3 visible";
-	            document.getElementById("carouselImg3").className = "carousel-image displayed";
-	            document.getElementById(id).className = "carousel carousel2";
-	            document.getElementById('carouselImg2').className = "carousel-image";
-	          }
-	          if (id === this.props.idList[2]) {
-	            document.getElementById(this.props.idList[0]).className = "carousel carousel1 visible";
-	            document.getElementById("carouselImg1").className = "carousel-image displayed";
-	            document.getElementById(id).className = "carousel carousel3";
-	            document.getElementById('carouselImg3').className = "carousel-image";
+	          for (var _i = 0; _i < 3; _i++) {
+	            if (id === this.props.idList[_i]) {
+	              document.getElementById(this.props.idList[_i + 1 > 2 ? '0' : _i + 1]).className = 'carousel carousel' + (_i + 1 > 2 ? '1' : _i + 2) + ' visible';
+	              document.getElementById('carouselImg' + (_i + 1 > 2 ? '1' : _i + 2)).className = "carousel-image displayed";
+	              document.getElementById(id).className = 'carousel carousel' + (_i + 1);
+	              document.getElementById('carouselImg' + (_i + 1)).className = "carousel-image";
+	            }
 	          }
 	        }
 	      }
