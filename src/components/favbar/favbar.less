@@ -1,0 +1,79 @@
+@import "../colors.less";
+
+
+.favbar-no {
+    display: block;
+    width:100%;
+    text-align: center;
+    .fav-no-heading {
+      font-weight: bold;
+    }
+    .fav-no-img {
+      width: 5%;
+    }
+  }
+
+
+  .favourites {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid @silver;
+    width:100%;
+    .fav-heading {
+      padding-top: 10px;
+      font-weight: bold;
+    }
+
+    .favbar-img{
+      padding-top: 20px;
+      width: 30%;
+    }
+
+    .favourite-holder {
+      width:100%;
+      height:200px;
+      display:inline-block;
+      position:relative;
+      overflow: hidden;
+      cursor: pointer;
+      .remove-icon {
+        position: absolute;
+        border: none;
+        height: 15px;
+        width: 15px;
+        right: 10px;
+        top: 10px;
+        display: inline;
+        background: url(remove.png) no-repeat;
+        &:hover {
+          height: 25px;
+          width: 25px;
+          background: url(removeicon.png) no-repeat;
+        }
+      }
+      img {
+        border-radius: 6px;
+        width: 100%;
+        height: 100%;
+        transition: all 0.5s ease-in-out;
+      }
+      .fav-name {
+        padding-bottom:12px;
+        font-size: 16px;
+        font-family: sans-serif;
+        font-weight: bold;
+        position: absolute;
+        bottom: 0;
+        left:0;
+        width:100%;
+        color: @white;
+        background-color: @backgroundcolor;
+        opacity: 0.9;
+        transition: background .3s ease-in-out;
+        transition-delay: .2s;
+        line-height: 52px;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+    }
+  }
