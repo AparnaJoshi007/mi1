@@ -1,4 +1,5 @@
 import React from 'react';
+import Fav from '../fav';
 
 const Body = props => (
   <div className="col-3 stamp">
@@ -6,6 +7,9 @@ const Body = props => (
       <span className="stamp-heading">{props.title}</span>
       <img src={props.image} alt={props.title} />
     </a>
+    <div className="fav-holder" onClick={() => props.favclick(props.title, props.image)}>
+      <Fav />
+    </div>
   </div>
 );
 

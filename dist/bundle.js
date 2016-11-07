@@ -21992,9 +21992,13 @@
 	
 	var _body2 = _interopRequireDefault(_body);
 	
-	var _footer = __webpack_require__(/*! ../footer */ 176);
+	var _footer = __webpack_require__(/*! ../footer */ 177);
 	
 	var _footer2 = _interopRequireDefault(_footer);
+	
+	var _favbar = __webpack_require__(/*! ../favbar */ 178);
+	
+	var _favbar2 = _interopRequireDefault(_favbar);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22007,15 +22011,58 @@
 	var Page = function (_React$Component) {
 	  _inherits(Page, _React$Component);
 	
-	  function Page() {
+	  function Page(props) {
 	    _classCallCheck(this, Page);
 	
-	    return _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
+	
+	    _this.state = {
+	      favBarList: []
+	    };
+	    _this.favclick = _this.favclick.bind(_this);
+	    _this.favremove = _this.favremove.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(Page, [{
+	    key: 'favclick',
+	    value: function favclick(title, img) {
+	      var fav = this.state.favBarList;
+	      var flag = 1;
+	      for (var i = 0; i < fav.length; i++) {
+	        if (fav[i]["title"] === title) {
+	          flag = 0;
+	        }
+	      }
+	      if (flag == 1) {
+	        if (this.state.favBarList.length > 2) {
+	          this.state.favBarList.splice(0, 1);
+	        }
+	        this.setState({
+	          favBarList: this.state.favBarList.concat({ "title": title, "img": img })
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'favremove',
+	    value: function favremove(title) {
+	      var fav = this.state.favBarList;
+	      var pos = void 0;
+	      for (var i = 0; i < fav.length; i++) {
+	        if (fav[i]["title"] === title) {
+	          pos = i;
+	        }
+	      }
+	      this.state.favBarList.splice(pos, 1);
+	      this.setState({
+	        favBarList: this.state.favBarList
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      var data = this.props.data;
 	      var imageList = data.imageList;
 	      var navList = data.navList;
@@ -22033,8 +22080,13 @@
 	            'div',
 	            { className: 'row', id: 'body' },
 	            imageList.map(function (item, index) {
-	              return _react2.default.createElement(_body2.default, { key: index, image: item.image, title: item.title });
+	              return _react2.default.createElement(_body2.default, { key: index, image: item.image, title: item.title, favclick: _this2.favclick });
 	            })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(_favbar2.default, { favBarList: this.state.favBarList, favimg: data.favourite, favremove: this.favremove })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -22300,7 +22352,7 @@
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22310,21 +22362,32 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _fav = __webpack_require__(/*! ../fav */ 176);
+	
+	var _fav2 = _interopRequireDefault(_fav);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Body = function Body(props) {
 	  return _react2.default.createElement(
-	    "div",
-	    { className: "col-3 stamp" },
+	    'div',
+	    { className: 'col-3 stamp' },
 	    _react2.default.createElement(
-	      "a",
-	      { href: "/", className: "stamp-link" },
+	      'a',
+	      { href: '/', className: 'stamp-link' },
 	      _react2.default.createElement(
-	        "span",
-	        { className: "stamp-heading" },
+	        'span',
+	        { className: 'stamp-heading' },
 	        props.title
 	      ),
-	      _react2.default.createElement("img", { src: props.image, alt: props.title })
+	      _react2.default.createElement('img', { src: props.image, alt: props.title })
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'fav-holder', onClick: function onClick() {
+	          return props.favclick(props.title, props.image);
+	        } },
+	      _react2.default.createElement(_fav2.default, null)
 	    )
 	  );
 	};
@@ -22338,6 +22401,35 @@
 
 /***/ },
 /* 176 */
+/*!*************************************!*\
+  !*** ./src/components/fav/index.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Fav = function Fav(props) {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "fav" },
+	    _react2.default.createElement("button", { className: "fav-icon" })
+	  );
+	};
+	
+	exports.default = Fav;
+
+/***/ },
+/* 177 */
 /*!****************************************!*\
   !*** ./src/components/footer/index.js ***!
   \****************************************/
@@ -22399,6 +22491,82 @@
 	};
 	
 	exports.default = Footer;
+
+/***/ },
+/* 178 */
+/*!****************************************!*\
+  !*** ./src/components/favbar/index.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Favbar = function Favbar(props) {
+	  if (props.favBarList.length == 0) {
+	    return _react2.default.createElement(
+	      "div",
+	      { className: "favbar-no" },
+	      _react2.default.createElement("img", { className: "fav-no-img", src: props.favimg }),
+	      _react2.default.createElement(
+	        "h3",
+	        { className: "fav-no-heading" },
+	        "You have no favourites"
+	      )
+	    );
+	  } else {
+	    return _react2.default.createElement(
+	      "div",
+	      { className: "favourites" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "col-3" },
+	        _react2.default.createElement(
+	          "h3",
+	          { className: "fav-heading" },
+	          "Favourites"
+	        ),
+	        _react2.default.createElement("img", { className: "favbar-img", src: props.favimg })
+	      ),
+	      props.favBarList.map(function (item, index) {
+	        return _react2.default.createElement(
+	          "div",
+	          { key: index, className: "col-3" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "favourite-holder" },
+	            _react2.default.createElement(
+	              "span",
+	              { className: "fav-name" },
+	              item.title
+	            ),
+	            _react2.default.createElement("img", { src: item.img, alt: item.title }),
+	            _react2.default.createElement("button", { className: "remove-icon", onClick: function onClick() {
+	                return props.favremove(item.title);
+	              } })
+	          )
+	        );
+	      })
+	    );
+	  }
+	};
+	
+	Favbar.propTypes = {
+	  favBarList: _react2.default.PropTypes.array.isRequired,
+	  favimg: _react2.default.PropTypes.string.isRequired,
+	  favremove: _react2.default.PropTypes.func.isRequired
+	};
+	
+	exports.default = Favbar;
 
 /***/ }
 /******/ ]);

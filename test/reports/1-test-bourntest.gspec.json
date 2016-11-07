@@ -11,7 +11,7 @@
         "nodes" : [ {
           "name" : "Check layout: test/bourntest.gspec included tags: ",
           "status" : "info",
-          "time" : 1478005984650,
+          "time" : 1478498429027,
           "sections" : [ {
             "name" : "Header",
             "place" : {
@@ -159,10 +159,10 @@
           "screenshot" : "layout-1-screenshot.png",
           "type" : "layout"
         } ],
-        "time" : 1478005979845,
+        "time" : 1478498422862,
         "type" : "node"
       } ],
-      "time" : 1478005970919,
+      "time" : 1478498412978,
       "type" : "node"
     } ]
   }
