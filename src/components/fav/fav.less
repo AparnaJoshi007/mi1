@@ -4,13 +4,14 @@
   display: inline;
   right: 0px;
   .fav-icon {
+    outline: none;
     border: none;
     height: 35px;
     width: 35px;
     display: inline;
     right: 0px;
     background: url("star.png") no-repeat;
-    &:hover {
+    &:hover, &:focus {
       background: url("starhover.png") no-repeat;
     }
   }

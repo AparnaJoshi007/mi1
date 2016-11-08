@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../header';
 import Carousel from '../carousel';
-import Body from '../body';
+import Stamp from '../stamp';
 import Footer from '../footer';
 import Favbar from '../favbar';
 
@@ -11,11 +11,11 @@ class Page extends React.Component {
     this.state = {
       favBarList : []
     }
-    this.favclick = this.favclick.bind(this);
-    this.favremove = this.favremove.bind(this);
+    this.clickfav = this.clickfav.bind(this);
+    this.removefav = this.removefav.bind(this);
   }
 
-  favclick(title, img) {
+  clickfav(title, img) {
   let fav = this.state.favBarList;
   let flag = 1;
     for(let i=0; i<fav.length; i++) {
@@ -34,7 +34,7 @@ class Page extends React.Component {
     }
   }
 
-  favremove(title) {
+  removefav(title) {
     let fav = this.state.favBarList;
     let pos;
     for(let i=0; i<fav.length; i++) {
@@ -61,10 +61,10 @@ class Page extends React.Component {
         <div className="grid">
           <Carousel imageList={carouselImages} idList={carouselId}/>
           <div className="row" id="body">
-            {imageList.map((item, index) => <Body key={index} image={item.image} title={item.title} favclick={this.favclick} />)}
+            {imageList.map((item, index) => <Stamp key={index} image={item.image} title={item.title} clickfav={this.clickfav} />)}
           </div>
           <div className="row">
-            <Favbar favBarList={this.state.favBarList} favimg={data.favourite} favremove={this.favremove} />
+            <Favbar favBarList={this.state.favBarList} favimg={data.favourite} removefav={this.removefav} />
           </div>
           <div className="row" id="footer">
             {data.footer.map((item, index) => <div key={index} className="col-3"><Footer label={item.title} id={item.id} content={item.content} /></div>)}
