@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from '../header';
+import CarouselJS from '../carouselJS';
 import Carousel from '../carousel';
+import StampJS from '../stampJS';
 import Stamp from '../stamp';
 import Footer from '../footer';
 import Favbar from '../favbar';
@@ -55,16 +57,30 @@ class Page extends React.Component {
     const navList = data.navList;
     const carouselImages = data.carouselImages;
     const carouselId = data.carouselId;
+    let carousel = <Carousel imageList={carouselImages} />;
+    let favouriteTab;
+    if (typeof document !== 'undefined') {
+      carousel = <CarouselJS imageList={carouselImages} idList={carouselId} />;
+      favouriteTab = <Favbar favBarList={this.state.favBarList} favimg={data.favourite} removefav={this.removefav} />;
+    }
     return (
       <div>
         <Header logo={data.logo} navList={navList} navright={data.navright} />
         <div className="grid">
-          <Carousel imageList={carouselImages} idList={carouselId}/>
+          {carousel}
           <div className="row" id="body">
-            {imageList.map((item, index) => <Stamp key={index} image={item.image} title={item.title} clickfav={this.clickfav} />)}
+            {imageList.map((item, index) => {
+                if (typeof document !== 'undefined') {
+                  return(<StampJS key={index} image={item.image} title={item.title} clickfav={this.clickfav} />);
+                }
+                else {
+                  return(<Stamp key={index} image={item.image} title={item.title}  />);
+                }
+              }
+            )}
           </div>
           <div className="row">
-            <Favbar favBarList={this.state.favBarList} favimg={data.favourite} removefav={this.removefav} />
+            {favouriteTab}
           </div>
           <div className="row" id="footer">
             {data.footer.map((item, index) => <div key={index} className="col-3"><Footer label={item.title} id={item.id} content={item.content} /></div>)}

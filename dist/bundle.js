@@ -21984,19 +21984,27 @@
 	
 	var _header2 = _interopRequireDefault(_header);
 	
-	var _carousel = __webpack_require__(/*! ../carousel */ 174);
+	var _carouselJS = __webpack_require__(/*! ../carouselJS */ 174);
+	
+	var _carouselJS2 = _interopRequireDefault(_carouselJS);
+	
+	var _carousel = __webpack_require__(/*! ../carousel */ 175);
 	
 	var _carousel2 = _interopRequireDefault(_carousel);
 	
-	var _stamp = __webpack_require__(/*! ../stamp */ 175);
+	var _stampJS = __webpack_require__(/*! ../stampJS */ 176);
+	
+	var _stampJS2 = _interopRequireDefault(_stampJS);
+	
+	var _stamp = __webpack_require__(/*! ../stamp */ 178);
 	
 	var _stamp2 = _interopRequireDefault(_stamp);
 	
-	var _footer = __webpack_require__(/*! ../footer */ 177);
+	var _footer = __webpack_require__(/*! ../footer */ 179);
 	
 	var _footer2 = _interopRequireDefault(_footer);
 	
-	var _favbar = __webpack_require__(/*! ../favbar */ 178);
+	var _favbar = __webpack_require__(/*! ../favbar */ 180);
 	
 	var _favbar2 = _interopRequireDefault(_favbar);
 	
@@ -22068,6 +22076,12 @@
 	      var navList = data.navList;
 	      var carouselImages = data.carouselImages;
 	      var carouselId = data.carouselId;
+	      var carousel = _react2.default.createElement(_carousel2.default, { imageList: carouselImages });
+	      var favouriteTab = void 0;
+	      if (typeof document !== 'undefined') {
+	        carousel = _react2.default.createElement(_carouselJS2.default, { imageList: carouselImages, idList: carouselId });
+	        favouriteTab = _react2.default.createElement(_favbar2.default, { favBarList: this.state.favBarList, favimg: data.favourite, removefav: this.removefav });
+	      }
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -22075,18 +22089,22 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'grid' },
-	          _react2.default.createElement(_carousel2.default, { imageList: carouselImages, idList: carouselId }),
+	          carousel,
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'row', id: 'body' },
 	            imageList.map(function (item, index) {
-	              return _react2.default.createElement(_stamp2.default, { key: index, image: item.image, title: item.title, clickfav: _this2.clickfav });
+	              if (typeof document !== 'undefined') {
+	                return _react2.default.createElement(_stampJS2.default, { key: index, image: item.image, title: item.title, clickfav: _this2.clickfav });
+	              } else {
+	                return _react2.default.createElement(_stamp2.default, { key: index, image: item.image, title: item.title });
+	              }
 	            })
 	          ),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'row' },
-	            _react2.default.createElement(_favbar2.default, { favBarList: this.state.favBarList, favimg: data.favourite, removefav: this.removefav })
+	            favouriteTab
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -22201,9 +22219,9 @@
 
 /***/ },
 /* 174 */
-/*!******************************************!*\
-  !*** ./src/components/carousel/index.js ***!
-  \******************************************/
+/*!********************************************!*\
+  !*** ./src/components/carouselJS/index.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22229,13 +22247,13 @@
 	var xDown = null;
 	var yDown = null;
 	
-	var Carousel = function (_React$Component) {
-	  _inherits(Carousel, _React$Component);
+	var CarouselJS = function (_React$Component) {
+	  _inherits(CarouselJS, _React$Component);
 	
-	  function Carousel(props) {
-	    _classCallCheck(this, Carousel);
+	  function CarouselJS(props) {
+	    _classCallCheck(this, CarouselJS);
 	
-	    var _this = _possibleConstructorReturn(this, (Carousel.__proto__ || Object.getPrototypeOf(Carousel)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (CarouselJS.__proto__ || Object.getPrototypeOf(CarouselJS)).call(this, props));
 	
 	    _this.clickHandler = _this.clickHandler.bind(_this);
 	    _this.handleTouchStart = _this.handleTouchStart.bind(_this);
@@ -22243,7 +22261,7 @@
 	    return _this;
 	  }
 	
-	  _createClass(Carousel, [{
+	  _createClass(CarouselJS, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var ele = document.getElementById('carousel');
@@ -22336,20 +22354,64 @@
 	    }
 	  }]);
 	
-	  return Carousel;
+	  return CarouselJS;
 	}(_react2.default.Component);
 	
-	Carousel.propTypes = {
+	CarouselJS.propTypes = {
 	  imageList: _react2.default.PropTypes.array.isRequired
 	};
 	
-	exports.default = Carousel;
+	exports.default = CarouselJS;
 
 /***/ },
 /* 175 */
-/*!***************************************!*\
-  !*** ./src/components/stamp/index.js ***!
-  \***************************************/
+/*!******************************************!*\
+  !*** ./src/components/carousel/index.js ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Carousel = function Carousel(props) {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "carousel-wrapper-no-js" },
+	    props.imageList.map(function (item, index) {
+	      return _react2.default.createElement(
+	        "div",
+	        { key: index },
+	        _react2.default.createElement("span", { id: "target-item-" + (index + 1) }),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "carousel-item-no-js item-" + (index + 1) },
+	          _react2.default.createElement("a", { className: "arrow-no-js arrow-no-js-prev", href: "#target-item-" + (index - 1 < 0 ? 3 : index) }),
+	          _react2.default.createElement("img", { src: item, className: "carousel-image-no-js", alt: item }),
+	          _react2.default.createElement("a", { className: "arrow-no-js arrow-no-js-next", href: "#target-item-" + (index + 2 > 3 ? 1 : index + 2) })
+	        )
+	      );
+	    })
+	  );
+	};
+	Carousel.propTypes = {
+	  imageList: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string).isRequired
+	};
+	exports.default = Carousel;
+
+/***/ },
+/* 176 */
+/*!*****************************************!*\
+  !*** ./src/components/stampJS/index.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22362,13 +22424,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _fav = __webpack_require__(/*! ../fav */ 176);
+	var _fav = __webpack_require__(/*! ../fav */ 177);
 	
 	var _fav2 = _interopRequireDefault(_fav);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Stamp = function Stamp(props) {
+	var StampJS = function StampJS(props) {
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'col-3 stamp' },
@@ -22392,16 +22454,16 @@
 	  );
 	};
 	
-	Stamp.propTypes = {
+	StampJS.propTypes = {
 	  image: _react2.default.PropTypes.string.isRequired,
 	  title: _react2.default.PropTypes.string.isRequired,
-	  clickfav: _react2.default.PropTypes.func.isRequired
+	  clickfav: _react2.default.PropTypes.func
 	};
 	
-	exports.default = Stamp;
+	exports.default = StampJS;
 
 /***/ },
-/* 176 */
+/* 177 */
 /*!*************************************!*\
   !*** ./src/components/fav/index.js ***!
   \*************************************/
@@ -22430,7 +22492,50 @@
 	exports.default = Fav;
 
 /***/ },
-/* 177 */
+/* 178 */
+/*!***************************************!*\
+  !*** ./src/components/stamp/index.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Stamp = function Stamp(props) {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "col-3 stamp" },
+	    _react2.default.createElement(
+	      "a",
+	      { href: "/", className: "stamp-link" },
+	      _react2.default.createElement(
+	        "span",
+	        { className: "stamp-heading" },
+	        props.title
+	      ),
+	      _react2.default.createElement("img", { src: props.image, alt: props.title })
+	    )
+	  );
+	};
+	
+	Stamp.propTypes = {
+	  image: _react2.default.PropTypes.string.isRequired,
+	  title: _react2.default.PropTypes.string.isRequired
+	};
+	
+	exports.default = Stamp;
+
+/***/ },
+/* 179 */
 /*!****************************************!*\
   !*** ./src/components/footer/index.js ***!
   \****************************************/
@@ -22494,7 +22599,7 @@
 	exports.default = Footer;
 
 /***/ },
-/* 178 */
+/* 180 */
 /*!****************************************!*\
   !*** ./src/components/favbar/index.js ***!
   \****************************************/
@@ -22510,7 +22615,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactAddonsCssTransitionGroup = __webpack_require__(/*! react-addons-css-transition-group */ 179);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(/*! react-addons-css-transition-group */ 181);
 	
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 	
@@ -22581,16 +22686,16 @@
 	exports.default = Favbar;
 
 /***/ },
-/* 179 */
+/* 181 */
 /*!******************************************************!*\
   !*** ./~/react-addons-css-transition-group/index.js ***!
   \******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! react/lib/ReactCSSTransitionGroup */ 180);
+	module.exports = __webpack_require__(/*! react/lib/ReactCSSTransitionGroup */ 182);
 
 /***/ },
-/* 180 */
+/* 182 */
 /*!************************************************!*\
   !*** ./~/react/lib/ReactCSSTransitionGroup.js ***!
   \************************************************/
@@ -22613,8 +22718,8 @@
 	
 	var React = __webpack_require__(/*! ./React */ 2);
 	
-	var ReactTransitionGroup = __webpack_require__(/*! ./ReactTransitionGroup */ 181);
-	var ReactCSSTransitionGroupChild = __webpack_require__(/*! ./ReactCSSTransitionGroupChild */ 183);
+	var ReactTransitionGroup = __webpack_require__(/*! ./ReactTransitionGroup */ 183);
+	var ReactCSSTransitionGroupChild = __webpack_require__(/*! ./ReactCSSTransitionGroupChild */ 185);
 	
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -22685,7 +22790,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 181 */
+/* 183 */
 /*!*********************************************!*\
   !*** ./~/react/lib/ReactTransitionGroup.js ***!
   \*********************************************/
@@ -22708,7 +22813,7 @@
 	
 	var React = __webpack_require__(/*! ./React */ 2);
 	var ReactInstanceMap = __webpack_require__(/*! ./ReactInstanceMap */ 119);
-	var ReactTransitionChildMapping = __webpack_require__(/*! ./ReactTransitionChildMapping */ 182);
+	var ReactTransitionChildMapping = __webpack_require__(/*! ./ReactTransitionChildMapping */ 184);
 	
 	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 12);
 	
@@ -22940,7 +23045,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 182 */
+/* 184 */
 /*!****************************************************!*\
   !*** ./~/react/lib/ReactTransitionChildMapping.js ***!
   \****************************************************/
@@ -23052,7 +23157,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 183 */
+/* 185 */
 /*!*****************************************************!*\
   !*** ./~/react/lib/ReactCSSTransitionGroupChild.js ***!
   \*****************************************************/
@@ -23074,8 +23179,8 @@
 	var React = __webpack_require__(/*! ./React */ 2);
 	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 35);
 	
-	var CSSCore = __webpack_require__(/*! fbjs/lib/CSSCore */ 184);
-	var ReactTransitionEvents = __webpack_require__(/*! ./ReactTransitionEvents */ 185);
+	var CSSCore = __webpack_require__(/*! fbjs/lib/CSSCore */ 186);
+	var ReactTransitionEvents = __webpack_require__(/*! ./ReactTransitionEvents */ 187);
 	
 	var onlyChild = __webpack_require__(/*! ./onlyChild */ 33);
 	
@@ -23227,7 +23332,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 184 */
+/* 186 */
 /*!***************************************!*\
   !*** ./~/react/~/fbjs/lib/CSSCore.js ***!
   \***************************************/
@@ -23357,7 +23462,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 185 */
+/* 187 */
 /*!**********************************************!*\
   !*** ./~/react/lib/ReactTransitionEvents.js ***!
   \**********************************************/

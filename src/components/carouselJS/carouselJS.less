@@ -1,0 +1,226 @@
+@import "../colors.less";
+
+.carousel-wrapper {
+  margin-top: 12px;
+  position: relative;
+  height:400px;
+  text-align: center;
+  .carousel {
+    transition: all 1s ease-in-out;
+    &.carousel1 {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: all 1s ease-in-out;
+      color: @white;
+      .arrow {
+        position: absolute;
+        top: 0;
+        display: none;
+        width: 50px;
+        height: 100%;
+        -webkit-tap-highlight-color: transparent;
+        color: transparent;
+        background: url("./arrow.png") 50% 50%/20px no-repeat;
+        background-position: center;
+        &.arrow-prev {
+          left: 0;
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+        &.arrow-next {
+          right: 0;
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+      }
+      .carousel-image {
+        display: none;
+        width: 100%;
+        cursor: pointer;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 6px;
+      }
+      &.visible {
+        opacity:1;
+        .carousel-image {
+          display: block;
+        }
+        .arrow {
+          display: block;
+          z-index: 3;
+        }
+      }
+    }
+    &.carousel2 {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: all 1s ease-in-out;
+      color: @white;
+      .arrow {
+        position: absolute;
+        top: 0;
+        display: none;
+        width: 50px;
+        height: 100%;
+        -webkit-tap-highlight-color: transparent;
+        color: transparent;
+        background: url("./arrow.png") 50% 50%/20px no-repeat;
+        background-position: center;
+        &.arrow-prev {
+          left: 0;
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+        &.arrow-next {
+          right: 0;
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+      }
+      .carousel-image {
+        display: none;
+        width: 100%;
+        cursor: pointer;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 6px;
+      }
+      &.visible {
+        opacity: 1;
+        .carousel-image {
+          display: block;
+        }
+        .arrow {
+          display: block;
+          z-index: 3;
+        }
+      }
+    }
+    &.carousel3 {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: all 1s ease-in-out;
+      color: @white;
+      .arrow {
+        position: absolute;
+        top: 0;
+        display: none;
+        width: 50px;
+        height: 100%;
+        -webkit-tap-highlight-color: transparent;
+        color: transparent;
+        background: url("./arrow.png") 50% 50%/20px no-repeat;
+        background-position: center;
+        &.arrow-prev {
+          left: 0;
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+        &.arrow-next {
+          right: 0;
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+          &:hover, &:focus {
+            outline: none;
+            background-color: fade(transparent, 20%);
+          }
+        }
+      }
+      .carousel-image {
+        display: none;
+        width: 100%;
+        cursor: pointer;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 6px;
+      }
+      &.visible {
+        opacity: 1;
+        .carousel-image {
+          display: block;
+        }
+        .arrow {
+          display: block;
+          z-index: 3;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .carousel-wrapper {
+    height: 320px;
+    .carousel-radio-label {
+      top: 280px;
+    }
+  }
+}
+
+@media (max-width: 580px) {
+  .carousel-wrapper {
+    height: 200px;
+    .carousel-radio-label {
+      top: 160px;
+    }
+    .carousel {
+      &.carousel1 {
+        .carousel-image {
+          height: 100%;
+          overflow: hidden;
+        }
+        .arrow {
+          background-size: 20px;
+          background-position: 10px 50%;
+        }
+      }
+      &.carousel2 {
+        .carousel-image {
+          height: 100%;
+          overflow: hidden;
+        }
+        .arrow {
+          background-size: 20px;
+          background-position: 10px 50%;
+        }
+      }
+      &.carousel3 {
+        .carousel-image {
+          height: 100%;
+          overflow: hidden;
+        }
+        .arrow {
+          background-size: 20px;
+          background-position: 10px 50%;
+        }
+      }
+    }
+  }
+}
