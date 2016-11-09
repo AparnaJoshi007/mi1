@@ -22045,16 +22045,7 @@
 	    key: 'clickStamp',
 	    value: function clickStamp(title) {
 	      var data = void 0;
-	      var value = void 0;
-	      value = _count2.default.countList;
-	      console.log(value[0].count);
-	      for (var i = 0; i < value.length; i++) {
-	        if (value[i]['title'] === title) {
-	          value[i]['count'] += 1;
-	        }
-	      }
-	      data = JSON.stringify(value);
-	      data = '{"countList":' + data + '}';
+	      data = JSON.stringify({ "title": title });
 	      (0, _isomorphicFetch2.default)("http://localhost:3000/updateclick", {
 	        method: "POST",
 	        headers: {
@@ -23601,23 +23592,23 @@
 		"countList": [
 			{
 				"title": "Fruits",
-				"count": 21,
+				"count": 3,
 				"image": "fruits.jpg"
 			},
 			{
 				"title": "Dairy",
-				"count": 2,
+				"count": 6,
 				"image": "dairy.jpg"
+			},
+			{
+				"title": "Cosmetics",
+				"count": 2,
+				"image": "cosmetics.jpg"
 			},
 			{
 				"title": "Pasta",
 				"count": 1,
 				"image": "pasta.jpg"
-			},
-			{
-				"title": "Cosmetics",
-				"count": 1,
-				"image": "cosmetics.jpg"
 			}
 		]
 	};

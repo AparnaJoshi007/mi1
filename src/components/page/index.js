@@ -21,16 +21,7 @@ class Page extends React.Component {
   }
   clickStamp(title) {
     let data;
-    let value;
-    value = countval.countList;
-    console.log(value[0].count);
-    for(let i=0; i < value.length; i++) {
-      if(value[i]['title'] === title) {
-        value[i]['count'] += 1;
-      }
-    }
-    data = JSON.stringify(value);
-    data = '{"countList":'+data+'}';
+    data = JSON.stringify({"title": title});
     fetch("http://localhost:3000/updateclick", {
         method: "POST",
         headers: {

@@ -19,8 +19,19 @@ const server = app.listen(process.env.PORT || 3000, () => {
 });
 
 app.post('/updateclick', (req, res) => {
-  console.log(JSON.stringify(req.body));
-  fs.writeFile("dist/count.json", JSON.stringify(req.body) , function(err) {
+  let data;
+  let value = req.body.title;
+  console.log(value);
+  let obj = JSON.parse(fs.readFileSync('dist/count.json', 'utf8'));
+  obj = obj.countList;
+  for(let i=0; i < obj.length; i++) {
+    if(obj[i]['title'] === value) {
+      obj[i]['count'] += 1;
+    }
+  }
+  data = JSON.stringify(obj);
+  data = '{"countList":'+data+'}';
+  fs.writeFile("dist/count.json", data , function(err) {
     if(err) {
        return console.log(err);
     }
