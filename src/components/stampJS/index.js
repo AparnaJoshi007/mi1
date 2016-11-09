@@ -2,7 +2,7 @@ import React from 'react';
 import Fav from '../fav';
 
 const StampJS = props => (
-  <div className="col-3 stamp">
+  <div className="col-3 stamp" onClick={() => props.clickStamp(props.title)}>
     <a href="/" className="stamp-link">
       <span className="stamp-heading">{props.title}</span>
       <img src={props.image} alt={props.title} />

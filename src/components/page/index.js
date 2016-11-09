@@ -6,6 +6,8 @@ import StampJS from '../stampJS';
 import Stamp from '../stamp';
 import Footer from '../footer';
 import Favbar from '../favbar';
+import countval from '../../../dist/count.json';
+import fetch from 'isomorphic-fetch';
 
 class Page extends React.Component {
   constructor(props) {
@@ -15,6 +17,39 @@ class Page extends React.Component {
     }
     this.clickfav = this.clickfav.bind(this);
     this.removefav = this.removefav.bind(this);
+    this.clickStamp = this.clickStamp.bind(this);
+  }
+  clickStamp(title) {
+    let data;
+    let value;
+    value = countval.countList;
+    console.log(value[0].count);
+    for(let i=0; i < value.length; i++) {
+      if(value[i]['title'] === title) {
+        value[i]['count'] += 1;
+      }
+    }
+    data = JSON.stringify(value);
+    data = '{"countList":'+data+'}';
+    fetch("http://localhost:3000/updateclick", {
+        method: "POST",
+        headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        body: data
+    })
+    .then((response) => {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+        return response;
+    })
+    .then((res) => {
+      console.log(res.body);
+    }).catch((error) => {
+            console.log(error);
+    });
   }
 
   clickfav(title, img) {
@@ -53,7 +88,7 @@ class Page extends React.Component {
 
   render() {
     const data = this.props.data;
-    const imageList = data.imageList;
+    //let imageList = data.imageList;
     const navList = data.navList;
     const carouselImages = data.carouselImages;
     const carouselId = data.carouselId;
@@ -63,6 +98,11 @@ class Page extends React.Component {
       carousel = <CarouselJS imageList={carouselImages} idList={carouselId} />;
       favouriteTab = <Favbar favBarList={this.state.favBarList} favimg={data.favourite} removefav={this.removefav} />;
     }
+    let imageList = countval.countList;
+    imageList.sort(function(a, b) {
+        return parseInt(a.count) - parseInt(b.count);
+    });
+    imageList.reverse();
     return (
       <div>
         <Header logo={data.logo} navList={navList} navright={data.navright} />
@@ -71,7 +111,7 @@ class Page extends React.Component {
           <div className="row" id="body">
             {imageList.map((item, index) => {
                 if (typeof document !== 'undefined') {
-                  return(<StampJS key={index} image={item.image} title={item.title} clickfav={this.clickfav} />);
+                  return(<StampJS key={index} image={item.image} title={item.title} clickfav={this.clickfav} clickStamp={this.clickStamp} />);
                 }
                 else {
                   return(<Stamp key={index} image={item.image} title={item.title}  />);
