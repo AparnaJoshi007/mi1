@@ -37,7 +37,7 @@ class Page extends React.Component {
         return response;
     })
     .then((res) => {
-      console.log(res.body);
+      //console.log(res.body);
     }).catch((error) => {
             console.log(error);
     });
@@ -79,7 +79,7 @@ class Page extends React.Component {
 
   render() {
     const data = this.props.data;
-    //let imageList = data.imageList;
+    let imageData = data.imageList;
     const navList = data.navList;
     const carouselImages = data.carouselImages;
     const carouselId = data.carouselId;
@@ -89,11 +89,20 @@ class Page extends React.Component {
       carousel = <CarouselJS imageList={carouselImages} idList={carouselId} />;
       favouriteTab = <Favbar favBarList={this.state.favBarList} favimg={data.favourite} removefav={this.removefav} />;
     }
-    let imageList = countval.countList;
-    imageList.sort(function(a, b) {
+    let countData = countval.countList;
+    countData.sort(function(a, b) {
         return parseInt(a.count) - parseInt(b.count);
     });
-    imageList.reverse();
+    countData.reverse();
+    let imageList = [];
+    for(let i=0; i<imageData.length; i++) {
+      for(let j=0; j<imageData.length; j++) {
+        if(countData[i].title === imageData[j].title) {
+          imageList.push(imageData[j]);
+        }
+      }
+    }
+
     return (
       <div>
         <Header logo={data.logo} navList={navList} navright={data.navright} />

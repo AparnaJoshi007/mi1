@@ -22059,7 +22059,7 @@
 	        }
 	        return response;
 	      }).then(function (res) {
-	        console.log(res.body);
+	        //console.log(res.body);
 	      }).catch(function (error) {
 	        console.log(error);
 	      });
@@ -22104,7 +22104,7 @@
 	      var _this2 = this;
 	
 	      var data = this.props.data;
-	      //let imageList = data.imageList;
+	      var imageData = data.imageList;
 	      var navList = data.navList;
 	      var carouselImages = data.carouselImages;
 	      var carouselId = data.carouselId;
@@ -22114,11 +22114,20 @@
 	        carousel = _react2.default.createElement(_carouselJS2.default, { imageList: carouselImages, idList: carouselId });
 	        favouriteTab = _react2.default.createElement(_favbar2.default, { favBarList: this.state.favBarList, favimg: data.favourite, removefav: this.removefav });
 	      }
-	      var imageList = _count2.default.countList;
-	      imageList.sort(function (a, b) {
+	      var countData = _count2.default.countList;
+	      countData.sort(function (a, b) {
 	        return parseInt(a.count) - parseInt(b.count);
 	      });
-	      imageList.reverse();
+	      countData.reverse();
+	      var imageList = [];
+	      for (var i = 0; i < imageData.length; i++) {
+	        for (var j = 0; j < imageData.length; j++) {
+	          if (countData[i].title === imageData[j].title) {
+	            imageList.push(imageData[j]);
+	          }
+	        }
+	      }
+	
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -23592,23 +23601,19 @@
 		"countList": [
 			{
 				"title": "Fruits",
-				"count": 3,
-				"image": "fruits.jpg"
+				"count": 3
 			},
 			{
 				"title": "Dairy",
-				"count": 6,
-				"image": "dairy.jpg"
+				"count": 2
 			},
 			{
 				"title": "Cosmetics",
-				"count": 2,
-				"image": "cosmetics.jpg"
+				"count": 2
 			},
 			{
 				"title": "Pasta",
-				"count": 1,
-				"image": "pasta.jpg"
+				"count": 5
 			}
 		]
 	};
