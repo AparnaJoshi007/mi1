@@ -8,6 +8,7 @@ import Footer from '../footer';
 import Favbar from '../favbar';
 import countval from '../../../dist/count.json';
 import fetch from 'isomorphic-fetch';
+import base32 from 'hi-base32';
 
 class Page extends React.Component {
   constructor(props) {
@@ -19,9 +20,12 @@ class Page extends React.Component {
     this.removefav = this.removefav.bind(this);
     this.clickStamp = this.clickStamp.bind(this);
   }
-  clickStamp(title) {
+
+  clickStamp(id) {
     let data;
-    data = JSON.stringify({"title": title});
+    let key = base32.decode(this.props.authKey);
+    key = new Buffer(key).toString('base64');
+    data = JSON.stringify({"id": id, "key": key});
     fetch("http://localhost:3000/updateclick", {
         method: "POST",
         headers: {
@@ -89,6 +93,7 @@ class Page extends React.Component {
       carousel = <CarouselJS imageList={carouselImages} idList={carouselId} />;
       favouriteTab = <Favbar favBarList={this.state.favBarList} favimg={data.favourite} removefav={this.removefav} />;
     }
+
     let countData = countval.countList;
     countData.sort(function(a, b) {
         return parseInt(a.count) - parseInt(b.count);
@@ -96,11 +101,7 @@ class Page extends React.Component {
     countData.reverse();
     let imageList = [];
     for(let i=0; i<imageData.length; i++) {
-      for(let j=0; j<imageData.length; j++) {
-        if(countData[i].title === imageData[j].title) {
-          imageList.push(imageData[j]);
-        }
-      }
+      imageList[i] = imageData[(countData[i].id - 1)];
     }
 
     return (
@@ -111,7 +112,7 @@ class Page extends React.Component {
           <div className="row" id="body">
             {imageList.map((item, index) => {
                 if (typeof document !== 'undefined') {
-                  return(<StampJS key={index} image={item.image} title={item.title} clickfav={this.clickfav} clickStamp={this.clickStamp} />);
+                  return(<StampJS key={index} id={item.id} image={item.image} title={item.title} clickfav={this.clickfav} clickStamp={this.clickStamp} />);
                 }
                 else {
                   return(<Stamp key={index} image={item.image} title={item.title}  />);

@@ -549,6 +549,7 @@ table {
   transition: opacity 300ms ease-in;
 }
 .favbar-no {
+  margin-bottom: -12px;
   display: block;
   width: 100%;
   text-align: center;
@@ -560,6 +561,7 @@ table {
   width: 5%;
 }
 .favourites {
+  margin-bottom: -12px;
   display: inline-block;
   text-align: center;
   border: 1px solid #C0C0C0;
@@ -630,8 +632,8 @@ table {
     padding: 5px;
   }
   .footer {
-    margin: 0;
-    padding: 0;
+    margin-bottom: -36px;
+    padding: 0px;
   }
   .footer .footer-wrapper {
     margin: 5px;
@@ -661,7 +663,6 @@ table {
     padding: 0;
     clear: both;
     overflow: hidden;
-    background-color: #333;
   }
   .footer .footer-holder .footer-item {
     margin: 12px;
@@ -673,7 +674,7 @@ table {
     outline: none;
   }
   .footer .footer-holder .footer-item .footer-link {
-    color: #fff;
+    color: #000;
     text-decoration: none;
   }
   .footer .footer-checkbox {
@@ -726,22 +727,29 @@ table {
   }
 }
 .copy-right {
-  margin: 0;
+  margin-top: 36px;
   padding-top: 12px;
-  border: 1px solid #333;
+  border: 1px solid #00294f;
+  border-top: 5px solid #00539f;
   height: 40px;
   opacity: 0.9;
   color: #fff;
   text-align: center;
-  background-color: #333;
+  background-color: #00294f;
+}
+@media screen and (min-width: 581px) {
+  .copy-right {
+    margin-top: 0px;
+  }
 }
 
 @media screen and (max-width: 580px) {
   .navbar {
-    margin: 0;
-    padding: 0;
+    border-bottom: 5px solid #00539f;
+    margin: 0px;
+    padding: 0px;
     overflow: hidden;
-    background-color: #333;
+    background-color: #00294f;
   }
   .navbar .navbar-checkbox {
     opacity: 0;
@@ -773,7 +781,7 @@ table {
   }
   .navbar .navbar-logo:hover,
   .navbar .navbar-logo:focus {
-    background-color: #333;
+    background-color: #00294f;
   }
   .navbar .navbar-logo .navbar-logo-link {
     display: block;
@@ -784,7 +792,7 @@ table {
   }
   .navbar .navbar-logo .navbar-logo-link:focus {
     outline: none;
-    background-color: #111;
+    background-color: rgba(0, 83, 159, 0.8);
   }
   .navbar .navbar-holder {
     transition: height 0.3s ease-in-out;
@@ -801,7 +809,7 @@ table {
   }
   .navbar .navbar-holder .navbar-item:hover,
   .navbar .navbar-holder .navbar-item:focus {
-    background-color: #111;
+    background-color: rgba(0, 83, 159, 0.8);
   }
   .navbar .navbar-holder .navbar-item .navbar-link {
     display: block;
@@ -812,7 +820,7 @@ table {
   }
   .navbar .navbar-holder .navbar-item .navbar-link:hover,
   .navbar .navbar-holder .navbar-item .navbar-link:focus {
-    background-color: #111;
+    background-color: rgba(0, 83, 159, 0.8);
     text-decoration: underline;
     outline: none;
   }
@@ -822,7 +830,7 @@ table {
   }
   .navbar .navbar-holder .navbar-right:hover,
   .navbar .navbar-holder .navbar-right:focus {
-    background-color: #111;
+    background-color: rgba(0, 83, 159, 0.8);
   }
   .navbar .navbar-holder .navbar-right .navbar-right-link {
     display: block;
@@ -833,17 +841,18 @@ table {
   }
   .navbar .navbar-holder .navbar-right .navbar-right-link:hover,
   .navbar .navbar-holder .navbar-right .navbar-right-link:focus {
-    background-color: #111;
+    background-color: rgba(0, 83, 159, 0.8);
     text-decoration: underline;
     outline: none;
   }
 }
 @media screen and (min-width: 581px) {
   .navbar {
-    margin: 0;
-    padding: 0;
+    border-bottom: 5px solid #00539f;
+    margin: 0px;
+    padding: 0px;
     overflow: hidden;
-    background-color: #333;
+    background-color: #00294f;
   }
   .navbar .navbar-logo {
     float: left;
@@ -851,7 +860,7 @@ table {
   }
   .navbar .navbar-logo:hover,
   .navbar .navbar-logo:focus {
-    background-color: #333;
+    background-color: #00294f;
   }
   .navbar .navbar-logo .navbar-logo-link {
     display: block;
@@ -861,7 +870,7 @@ table {
     text-decoration: none;
   }
   .navbar .navbar-logo .navbar-logo-link:focus {
-    background-color: #111;
+    background-color: rgba(0, 83, 159, 0.8);
     outline: none;
   }
   .navbar .navbar-holder {
@@ -872,7 +881,7 @@ table {
   }
   .navbar .navbar-holder .navbar-right:hover,
   .navbar .navbar-holder .navbar-right:focus {
-    background-color: #111;
+    background-color: rgba(0, 83, 159, 0.8);
   }
   .navbar .navbar-holder .navbar-right .navbar-right-link {
     display: block;
@@ -885,14 +894,14 @@ table {
   .navbar .navbar-holder .navbar-right .navbar-right-link:focus {
     outline: none;
     text-decoration: underline;
-    background-color: #111;
+    background-color: rgba(0, 83, 159, 0.8);
   }
   .navbar .navbar-holder .navbar-item {
     float: left;
   }
   .navbar .navbar-holder .navbar-item:hover,
   .navbar .navbar-holder .navbar-item:focus {
-    background-color: #111;
+    background-color: rgba(0, 83, 159, 0.8);
   }
   .navbar .navbar-holder .navbar-item .navbar-link {
     display: block;
@@ -905,7 +914,7 @@ table {
   .navbar .navbar-holder .navbar-item .navbar-link:focus {
     outline: none;
     text-decoration: underline;
-    background-color: #111;
+    background-color: rgba(0, 83, 159, 0.8);
   }
   .navbar .icon,
   .navbar .navbar-checkbox {
@@ -1077,6 +1086,7 @@ body {
 .stamp {
   text-align: center;
   color: #fff;
+  margin-bottom: -36px;
 }
 .stamp .fav-holder {
   height: 35px;

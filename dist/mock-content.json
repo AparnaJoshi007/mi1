@@ -7,18 +7,22 @@
   ],
   "imageList": [
     {
+      "id": 1,
       "title": "Fruits",
       "image": "fruits.jpg"
     },
     {
+      "id": 2,
       "title": "Dairy",
       "image": "dairy.jpg"
     },
     {
-      "title": "Cosmetics",
-      "image": "cosmetics.jpg"
+      "id": 3,
+      "title": "Yogurt",
+      "image": "yogurt.jpg"
     },
     {
+      "id": 4,
       "title": "Pasta",
       "image": "pasta.jpg"
     }
@@ -63,7 +67,7 @@
   "favourite": "starlarge.png",
   "copyright": "Copyright @hy83",
   "carouselImages": [
-    "Household.jpg",
+    "Apples.jpg",
     "Coffee.jpg",
     "beverages.jpg"
   ],

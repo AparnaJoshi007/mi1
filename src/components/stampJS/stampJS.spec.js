@@ -14,7 +14,7 @@ const render = (jsx) => {
 
 describe('Body', () => {
   beforeEach(() => {
-    output = render(<Body title={mockData.imageList[0].title} image={mockData.imageList[0].image} />);
+    output = render(<Body id={mockData.imageList[0].id} title={mockData.imageList[0].title} image={mockData.imageList[0].image} />);
   });
   it('should have correct number of children', () => {
     const element = findWithClass(output, 'stamp-heading');
