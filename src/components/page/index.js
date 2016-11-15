@@ -31,7 +31,8 @@ class Page extends React.Component {
         method: "POST",
         headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer 123456789'
             },
         body: data
     })

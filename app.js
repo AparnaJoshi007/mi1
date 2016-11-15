@@ -8,9 +8,12 @@ import fs from 'fs';
 import bodyParser from 'body-parser';
 import auth from 'basic-auth';
 import base32 from 'hi-base32';
+var passport = require('passport');
+var Strategy = require('passport-http-bearer').Strategy;
 
 const app = express();
-const authKey = "Boom";
+const authKey = "BoomBasket";
+const authToken = "123456789";
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 app.use(express.static('dist'));
@@ -21,16 +24,22 @@ const server = app.listen(process.env.PORT || 3000, () => {
   console.log(`express server started @ ${serverAddress.port}`);
 });
 
-app.post('/updateclick', (req, res) => {
+passport.use(new Strategy(
+  function(token, cb) {
+      if (token !== authToken) { return cb(new Error("No authorization"), false); }
+      return cb(null, true);
+}));
+
+app.post('/updateclick',passport.authenticate('bearer', { session: false }), function(req, res) {
   let origin = req.get('origin');
   if(!origin || origin !== "http://localhost:3000") {
     console.log("Error occured");
   }
   else {
     let key = new Buffer(req.body.b, 'base64').toString('ascii');
-    if(key === authKey) {
+    let value = req.body.a;
+    if((key === authKey) && !(isNaN(value))) {
       let data;
-      let value = req.body.a;
       let obj = JSON.parse(fs.readFileSync('dist/count.json', 'utf8'));
       obj = obj.countList;
       for(let i=0; i < obj.length; i++) {
