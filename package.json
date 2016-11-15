@@ -7,7 +7,7 @@
     "node": "4.5.0"
   },
   "scripts": {
-    "start": "concurrently 'webpack -d --watch' 'node server.js' 'gulp'",
+    "start": "concurrently 'webpack -p --watch' 'node server.js' 'gulp'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -53,6 +53,7 @@
     "hi-base32": "^0.1.1",
     "json-loader": "^0.5.4",
     "node-cache": "^4.1.0",
+    "passport-http-bearer": "^1.0.1",
     "react-addons-css-transition-group": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
     "react-shallow-testutils": "^2.0.0",

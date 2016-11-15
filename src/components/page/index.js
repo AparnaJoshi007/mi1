@@ -9,6 +9,7 @@ import Favbar from '../favbar';
 import countval from '../../../dist/count.json';
 import fetch from 'isomorphic-fetch';
 import base32 from 'hi-base32';
+import apidata from './key';
 
 class Page extends React.Component {
   constructor(props) {
@@ -23,9 +24,9 @@ class Page extends React.Component {
 
   clickStamp(id) {
     let data;
-    let key = base32.decode(this.props.authKey);
+    let key = base32.decode(apidata);
     key = new Buffer(key).toString('base64');
-    data = JSON.stringify({"id": id, "key": key});
+    data = JSON.stringify({"a": id, "b": key});
     fetch("http://localhost:3000/updateclick", {
         method: "POST",
         headers: {
@@ -39,9 +40,6 @@ class Page extends React.Component {
             throw new Error("Bad response from server");
         }
         return response;
-    })
-    .then((res) => {
-      //console.log(res.body);
     }).catch((error) => {
             console.log(error);
     });

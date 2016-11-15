@@ -22,27 +22,33 @@ const server = app.listen(process.env.PORT || 3000, () => {
 });
 
 app.post('/updateclick', (req, res) => {
-  let key = new Buffer(req.body.key, 'base64').toString('ascii');
-  if(key === authKey) {
-    let data;
-    let value = req.body.id;
-    let obj = JSON.parse(fs.readFileSync('dist/count.json', 'utf8'));
-    obj = obj.countList;
-    for(let i=0; i < obj.length; i++) {
-      if(obj[i]['id'] === value) {
-        obj[i]['count'] += 1;
-      }
-    }
-    data = JSON.stringify(obj);
-    data = '{"countList":'+data+'}';
-    fs.writeFile("dist/count.json", data , function(err) {
-      if(err) {
-         return console.log(err);
-      }
-      res.send('The file was saved!');
-    });
-  } else {
+  let origin = req.get('origin');
+  if(!origin || origin !== "http://localhost:3000") {
     console.log("Error occured");
+  }
+  else {
+    let key = new Buffer(req.body.b, 'base64').toString('ascii');
+    if(key === authKey) {
+      let data;
+      let value = req.body.a;
+      let obj = JSON.parse(fs.readFileSync('dist/count.json', 'utf8'));
+      obj = obj.countList;
+      for(let i=0; i < obj.length; i++) {
+        if(obj[i]['id'] === value) {
+          obj[i]['count'] += 1;
+        }
+      }
+      data = JSON.stringify(obj);
+      data = '{"countList":'+data+'}';
+      fs.writeFile("dist/count.json", data , function(err) {
+        if(err) {
+           return console.log(err);
+        }
+        res.send('The file was saved!');
+      });
+    } else {
+      console.log("Error occured");
+    }
   }
 });
 
@@ -54,9 +60,10 @@ fetch('http://localhost:3000/mock-content.json')
         return response.json();
     })
     .then((props) => {
-      const getReactMarkUp = ReactDomServer.renderToString(<App data={props} authKey={authKey} />);
+      const getReactMarkUp = ReactDomServer.renderToString(<App data={props} />);
+      props = JSON.stringify(props);
+      props = new Buffer(props).toString('base64');
       app.get('', (req, res) => {
-      let newKey = base32.encode(authKey);
-      res.render('index', {ReactContainer: getReactMarkUp, pageContent: JSON.stringify(props), authKey: newKey });
+      res.render('index', {ReactContainer: getReactMarkUp, pageContent: props });
     });
     });
